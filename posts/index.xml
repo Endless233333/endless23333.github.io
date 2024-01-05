@@ -1,0 +1,186 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - 无止境的博客</title>
+        <link>https://endless233333.github.io/posts/</link>
+        <description>All Posts | 无止境的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>我的 zsh 提示符</title>
+    <link>https://endless233333.github.io/zsh_prompt/</link>
+    <pubDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/zsh_prompt/</guid>
+    <description><![CDATA[<p>在 <a href="https://man.archlinux.org/man/zshparam.1" target="_blank" rel="noopener noreffer ">zshparam(1)</a> 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。</p>
+<h2 id="zsh-prompt-转义字符">zsh PROMPT 转义字符</h2>
+<p>zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 <a href="https://man.archlinux.org/man/zshmisc.1" target="_blank" rel="noopener noreffer ">zshmisc(1)</a>。</p>
+<p>在 zshmisc(1) 的 SIMPLE PROMPT ESCAPES 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:</p>
+<ul>
+<li>登陆信息:
+<ul>
+<li><code>%M</code>: 完整的主机名</li>
+<li><code>%n</code>: 用户名</li>
+</ul>
+</li>
+<li>Shell 状态:
+<ul>
+<li><code>%#</code>: 特权模式下是一个井号否则是一个百分号</li>
+<li><code>%?</code>: 上一个命令的返回状态</li>
+<li><code>%d</code> 或 <code>%/</code>: 当前目录</li>
+<li><code>%~</code>: 当前目录，若以 $HOME 起始，则将之替换为一个波浪号</li>
+<li><code>%j</code>: 作业数</li>
+</ul>
+</li>
+<li>时间和日期:
+<ul>
+<li><code>%D</code>: 年-月-日</li>
+<li><code>%T</code>: 时:分</li>
+<li><code>%*</code>: 时:分:秒</li>
+</ul>
+</li>
+<li>样式:
+<ul>
+<li><code>%B (%b)</code>: 开始 (结束) 粗体</li>
+<li><code>%F{red} (%f)</code>: 开始 (结束) 颜色</li>
+</ul>
+</li>
+<li>条件子串:
+<ul>
+<li><code>%(x.true-text.false-text)</code>: x 为条件, true-text 为条件为真时显示的内容, false-text 为条件为假时显示的内容。x 有特定的选择, 当 x 为 ? 时，表示上一个命令的返回状态, 默认 0 为真, 其他为假。</li>
+</ul>
+</li>
+</ul>
+<h2 id="git-当前分支名">git 当前分支名</h2>
+<p>在 <a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Zsh" target="_blank" rel="noopener noreffer ">PRO Git 的 Git in Zsh</a> 一节中可以看到一个在右侧显示分支名的实例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">autoload -Uz vcs_info
+</span></span><span class="line"><span class="cl">precmd_vcs_info<span class="o">()</span> <span class="o">{</span> vcs_info <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">precmd_functions</span><span class="o">+=(</span> precmd_vcs_info <span class="o">)</span>
+</span></span><span class="line"><span class="cl">setopt prompt_subst
+</span></span><span class="line"><span class="cl"><span class="nv">RPROMPT</span><span class="o">=</span><span class="s1">&#39;${vcs_info_msg_0_}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PROMPT=&#39;${vcs_info_msg_0_}%# &#39;</span>
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:vcs_info:git:*&#39;</span> formats <span class="s1">&#39;%b&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 <code>zstyle ':vcs_info:git:*' formats '%b'</code> 一句中 <code>'%b'</code> 指定了显示的样式，<code>%b</code> 表示分支名。</p>
+<h2 id="我的-prompt-配置">我的 PROMPT 配置</h2>
+<p>推荐一个网站 <a href="https://zsh-prompt-generator.site/" target="_blank" rel="noopener noreffer ">zsh-prompt-generator</a> 用于生成简单的 PROMPT。</p>
+<p>首先我希望提示符分为两行，这只需要加一个换行即可:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──
+</span></span></span><span class="line"><span class="cl"><span class="s1">└&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──
+</span></span><span class="line"><span class="cl">└
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在第一行中显示当前的时间和当前目录:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──(%T)─[%~]
+</span></span></span><span class="line"><span class="cl"><span class="s1">└&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>20:00<span class="o">)</span>─<span class="o">[</span>~<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在第二行中, 若上一个命令的返回状态不为 0 则显示此返回状态, 否则按照 <code>%#</code> 显示:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──(%T)─[%~]
+</span></span></span><span class="line"><span class="cl"><span class="s1">└(%(?.%#.%?))─&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>20:00<span class="o">)</span>─<span class="o">[</span>~<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└<span class="o">(</span>%<span class="o">)</span>─false
+</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>20:00<span class="o">)</span>─<span class="o">[</span>~<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└<span class="o">(</span>1<span class="o">)</span>─
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在第二行显示当前分支名:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">autoload -Uz vcs_info
+</span></span><span class="line"><span class="cl">precmd_vcs_info<span class="o">()</span> <span class="o">{</span> vcs_info <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">precmd_functions</span><span class="o">+=(</span> precmd_vcs_info <span class="o">)</span>
+</span></span><span class="line"><span class="cl">setopt prompt_subst
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:vcs_info:git:*&#39;</span> formats <span class="s1">&#39;[%b]─&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──(%T)─[%~]
+</span></span></span><span class="line"><span class="cl"><span class="s1">└(%(?.%#.%?))─${vcs_info_msg_0_}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>21:27<span class="o">)</span>─<span class="o">[</span>~/git-test<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└<span class="o">(</span>%<span class="o">)</span>─<span class="o">[</span>master<span class="o">]</span>─
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后设置一下颜色:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">autoload -Uz vcs_info
+</span></span><span class="line"><span class="cl">precmd_vcs_info<span class="o">()</span> <span class="o">{</span> vcs_info <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">precmd_functions</span><span class="o">+=(</span> precmd_vcs_info <span class="o">)</span>
+</span></span><span class="line"><span class="cl">setopt prompt_subst
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:vcs_info:git:*&#39;</span> formats <span class="s1">&#39;%F{10}[%f%b%F{10}]─%f&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;%F{10}┌──(%f%F{11}%T%f%F{10})─[%f%F{15}%~%f%F{10}]
+</span></span></span><span class="line"><span class="cl"><span class="s1">└(%f%(?.%F{14}%#%f.%F{9}%?%f)%F{10})─%f${vcs_info_msg_0_}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+</channel>
+</rss>
