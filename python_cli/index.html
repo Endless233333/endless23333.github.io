@@ -1,17 +1,128 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>无止境的博客</title>
-        <link>https://endless233333.github.io/</link>
-        <description>无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</lastBuildDate>
-            <atom:link href="https://endless233333.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
-    <title>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</title>
-    <link>https://endless233333.github.io/python_cli/</link>
-    <pubDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</pubDate>
-    <author>无止境</author>
-    <guid>https://endless233333.github.io/python_cli/</guid>
-    <description><![CDATA[<p>在过去, 我经常使用 <code>python -m http.server</code> 用来在局域网中给别人分享一些文件, 所以我打算去翻翻自己电脑上安装的各种 python 包, 找一找能直接通过 <code>python -m</code> 使用的有用的模块。</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能 - 无止境的博客</title><meta name="Description" content=""><meta property="og:title" content="通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能" />
+<meta property="og:description" content="在过去, 我经常使用 python -m http.server 用来在局域网中给别人分享一些文件, 所以我打算去翻翻自己电脑上安装的各种 python 包, 找一找能直接通过 python -m 使用的有用的模块。 python" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://endless233333.github.io/python_cli/" /><meta property="og:image" content="https://endless233333.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-06T23:14:42+08:00" />
+<meta property="article:modified_time" content="2024-01-06T23:14:42+08:00" /><meta property="og:site_name" content="无止境的博客" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://endless233333.github.io/avatar.png" /><meta name="twitter:title" content="通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能"/>
+<meta name="twitter:description" content="在过去, 我经常使用 python -m http.server 用来在局域网中给别人分享一些文件, 所以我打算去翻翻自己电脑上安装的各种 python 包, 找一找能直接通过 python -m 使用的有用的模块。 python"/>
+<meta name="application-name" content="无止境的博客">
+<meta name="apple-mobile-web-app-title" content="无止境的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://endless233333.github.io/python_cli/" /><link rel="prev" href="https://endless233333.github.io/zsh_prompt/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/endless233333.github.io\/python_cli\/"
+        },"genre": "posts","keywords": "python, linux","wordcount":  1100 ,
+        "url": "https:\/\/endless233333.github.io\/python_cli\/","datePublished": "2024-01-06T23:14:42+08:00","dateModified": "2024-01-06T23:14:42+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "无止境"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无止境的博客">无止境的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 首页 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无止境的博客">无止境的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">首页</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>无止境</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-06">2024-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1100 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#python--m">python -m</a></li>
+    <li><a href="#寻找">寻找</a></li>
+    <li><a href="#筛选与使用">筛选与使用</a>
+      <ul>
+        <li><a href="#标准库">标准库</a>
+          <ul>
+            <li><a href="#ast">ast</a></li>
+            <li><a href="#base64">base64</a></li>
+            <li><a href="#compileall">compileall</a></li>
+            <li><a href="#cprofile">cProfile</a></li>
+            <li><a href="#curses">curses</a></li>
+            <li><a href="#ensurepip">ensurepip</a></li>
+            <li><a href="#gzip">gzip</a></li>
+            <li><a href="#httpserver">http.server</a></li>
+            <li><a href="#imghdr">imghdr</a></li>
+            <li><a href="#jsontool">json.tool</a></li>
+            <li><a href="#lib2to3">lib2to3</a></li>
+            <li><a href="#mimetypes">mimetypes</a></li>
+            <li><a href="#pdb">pdb</a></li>
+            <li><a href="#platform">platform</a></li>
+            <li><a href="#profile">profile</a></li>
+            <li><a href="#pstats">pstats</a></li>
+            <li><a href="#pydoc">pydoc</a></li>
+            <li><a href="#quopri">quopri</a></li>
+            <li><a href="#random">random</a></li>
+            <li><a href="#shlex">shlex</a></li>
+            <li><a href="#site">site</a></li>
+            <li><a href="#sysconfig">sysconfig</a></li>
+            <li><a href="#tabnanny">tabnanny</a></li>
+            <li><a href="#tarfile">tarfile</a></li>
+            <li><a href="#tkinter">tkinter</a></li>
+            <li><a href="#turtledemo">turtledemo</a></li>
+            <li><a href="#unittest">unittest</a></li>
+            <li><a href="#uu">uu</a></li>
+            <li><a href="#venv">venv</a></li>
+            <li><a href="#xmlrpcserver">xmlrpc.server</a></li>
+            <li><a href="#zipapp">zipapp</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在过去, 我经常使用 <code>python -m http.server</code> 用来在局域网中给别人分享一些文件, 所以我打算去翻翻自己电脑上安装的各种 python 包, 找一找能直接通过 <code>python -m</code> 使用的有用的模块。</p>
 <h2 id="python--m">python -m</h2>
 <p>在 <a href="https://docs.python.org/3/using/cmdline.html#cmdoption-m" target="_blank" rel="noopener noreffer ">python 的文档</a>中可以看到, <code>python -m  &lt;module-name&gt;</code> 会在 sys.path 中搜索指定模块, 并以 <code>__main__</code> 模块执行其内容。</p>
 <p>以 <code>__main__</code> 模块执行其内容有两种情况:</p>
@@ -280,186 +391,41 @@
 <p>创建: <code>python -m zipapp -o 1.pyz -m &quot;myapp:main&quot; ./app</code></p>
 <p>执行: <code>python 1.pyz</code></p>
 <p>在已存在 <code>__main__.py</code> 的目录中不可以使用 <code>-m</code> 选项指定入口点。</p>
-]]></description>
-</item>
-<item>
-    <title>我的 zsh 提示符</title>
-    <link>https://endless233333.github.io/zsh_prompt/</link>
-    <pubDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</pubDate>
-    <author>无止境</author>
-    <guid>https://endless233333.github.io/zsh_prompt/</guid>
-    <description><![CDATA[<p>在 <a href="https://man.archlinux.org/man/zshparam.1" target="_blank" rel="noopener noreffer ">zshparam(1)</a> 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。</p>
-<h2 id="zsh-prompt-转义字符">zsh PROMPT 转义字符</h2>
-<p>zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 <a href="https://man.archlinux.org/man/zshmisc.1" target="_blank" rel="noopener noreffer ">zshmisc(1)</a>。</p>
-<p>在 zshmisc(1) 的 <a href="https://man.archlinux.org/man/zshmisc.1#SIMPLE_PROMPT_ESCAPES" target="_blank" rel="noopener noreffer ">SIMPLE PROMPT ESCAPES</a> 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:</p>
-<ul>
-<li>登陆信息:
-<ul>
-<li><code>%M</code>: 完整的主机名</li>
-<li><code>%n</code>: 用户名</li>
-</ul>
-</li>
-<li>Shell 状态:
-<ul>
-<li><code>%#</code>: 特权模式下是一个井号否则是一个百分号</li>
-<li><code>%?</code>: 上一个命令的返回状态</li>
-<li><code>%d</code> 或 <code>%/</code>: 当前目录</li>
-<li><code>%~</code>: 当前目录，若以 $HOME 起始，则将之替换为一个波浪号</li>
-<li><code>%j</code>: 作业数</li>
-</ul>
-</li>
-<li>时间和日期:
-<ul>
-<li><code>%D</code>: 年-月-日</li>
-<li><code>%T</code>: 时:分</li>
-<li><code>%*</code>: 时:分:秒</li>
-</ul>
-</li>
-<li>样式:
-<ul>
-<li><code>%B (%b)</code>: 开始 (结束) 粗体</li>
-<li><code>%F{red} (%f)</code>: 开始 (结束) 颜色</li>
-</ul>
-</li>
-<li>条件子串:
-<ul>
-<li><code>%(x.true-text.false-text)</code>: x 为条件, true-text 为条件为真时显示的内容, false-text 为条件为假时显示的内容。x 有特定的选择, 当 x 为 ? 时，表示上一个命令的返回状态, 默认 0 为真, 其他为假。</li>
-</ul>
-</li>
-</ul>
-<h2 id="git-当前分支名">git 当前分支名</h2>
-<p>在 <a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Zsh" target="_blank" rel="noopener noreffer ">PRO Git 的 Git in Zsh</a> 一节中可以看到一个在右侧显示分支名的实例:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">autoload -Uz vcs_info
-</span></span><span class="line"><span class="cl">precmd_vcs_info<span class="o">()</span> <span class="o">{</span> vcs_info <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="nv">precmd_functions</span><span class="o">+=(</span> precmd_vcs_info <span class="o">)</span>
-</span></span><span class="line"><span class="cl">setopt prompt_subst
-</span></span><span class="line"><span class="cl"><span class="nv">RPROMPT</span><span class="o">=</span><span class="s1">&#39;${vcs_info_msg_0_}&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># PROMPT=&#39;${vcs_info_msg_0_}%# &#39;</span>
-</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:vcs_info:git:*&#39;</span> formats <span class="s1">&#39;%b&#39;</span>
-</span></span></code></pre></td></tr></table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/python_cli/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/linux/">linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/zsh_prompt/" class="prev" rel="prev" title="我的 zsh 提示符"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>我的 zsh 提示符</a></div>
 </div>
-</div><p>在 <code>zstyle ':vcs_info:git:*' formats '%b'</code> 一句中 <code>'%b'</code> 指定了显示的样式，<code>%b</code> 表示分支名。</p>
-<h2 id="我的-prompt-配置">我的 PROMPT 配置</h2>
-<p>推荐一个网站 <a href="https://zsh-prompt-generator.site/" target="_blank" rel="noopener noreffer ">zsh-prompt-generator</a> 用于生成简单的 PROMPT。</p>
-<p>首先我希望提示符分为两行，这只需要加一个换行即可:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──
-</span></span></span><span class="line"><span class="cl"><span class="s1">└&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">┌──
-</span></span><span class="line"><span class="cl">└
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>在第一行中显示当前的时间和当前目录:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──(%T)─[%~]
-</span></span></span><span class="line"><span class="cl"><span class="s1">└&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>20:00<span class="o">)</span>─<span class="o">[</span>~<span class="o">]</span>
-</span></span><span class="line"><span class="cl">└
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>在第二行中, 若上一个命令的返回状态不为 0 则显示此返回状态, 否则按照 <code>%#</code> 显示:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──(%T)─[%~]
-</span></span></span><span class="line"><span class="cl"><span class="s1">└(%(?.%#.%?))─&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>20:00<span class="o">)</span>─<span class="o">[</span>~<span class="o">]</span>
-</span></span><span class="line"><span class="cl">└<span class="o">(</span>%<span class="o">)</span>─false
-</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>20:00<span class="o">)</span>─<span class="o">[</span>~<span class="o">]</span>
-</span></span><span class="line"><span class="cl">└<span class="o">(</span>1<span class="o">)</span>─
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>在第二行显示当前分支名:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">autoload -Uz vcs_info
-</span></span><span class="line"><span class="cl">precmd_vcs_info<span class="o">()</span> <span class="o">{</span> vcs_info <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="nv">precmd_functions</span><span class="o">+=(</span> precmd_vcs_info <span class="o">)</span>
-</span></span><span class="line"><span class="cl">setopt prompt_subst
-</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:vcs_info:git:*&#39;</span> formats <span class="s1">&#39;[%b]─&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;┌──(%T)─[%~]
-</span></span></span><span class="line"><span class="cl"><span class="s1">└(%(?.%#.%?))─${vcs_info_msg_0_}&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>21:27<span class="o">)</span>─<span class="o">[</span>~/git-test<span class="o">]</span>
-</span></span><span class="line"><span class="cl">└<span class="o">(</span>%<span class="o">)</span>─<span class="o">[</span>master<span class="o">]</span>─
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>最后设置一下颜色:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">autoload -Uz vcs_info
-</span></span><span class="line"><span class="cl">precmd_vcs_info<span class="o">()</span> <span class="o">{</span> vcs_info <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="nv">precmd_functions</span><span class="o">+=(</span> precmd_vcs_info <span class="o">)</span>
-</span></span><span class="line"><span class="cl">setopt prompt_subst
-</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:vcs_info:git:*&#39;</span> formats <span class="s1">&#39;%F{10}[%f%b%F{10}]─%f&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;%F{10}┌──(%f%F{11}%T%f%F{10})─[%f%F{15}%~%f%F{10}]
-</span></span></span><span class="line"><span class="cl"><span class="s1">└(%f%(?.%F{14}%#%f.%F{9}%?%f)%F{10})─%f${vcs_info_msg_0_}&#39;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>]]></description>
-</item>
-</channel>
-</rss>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">无止境</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

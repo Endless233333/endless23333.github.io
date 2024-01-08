@@ -12,7 +12,7 @@
     <description><![CDATA[<p>在 <a href="https://man.archlinux.org/man/zshparam.1" target="_blank" rel="noopener noreffer ">zshparam(1)</a> 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。</p>
 <h2 id="zsh-prompt-转义字符">zsh PROMPT 转义字符</h2>
 <p>zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 <a href="https://man.archlinux.org/man/zshmisc.1" target="_blank" rel="noopener noreffer ">zshmisc(1)</a>。</p>
-<p>在 zshmisc(1) 的 SIMPLE PROMPT ESCAPES 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:</p>
+<p>在 zshmisc(1) 的 <a href="https://man.archlinux.org/man/zshmisc.1#SIMPLE_PROMPT_ESCAPES" target="_blank" rel="noopener noreffer ">SIMPLE PROMPT ESCAPES</a> 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:</p>
 <ul>
 <li>登陆信息:
 <ul>

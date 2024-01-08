@@ -3,7 +3,284 @@
         <title>All Posts - 无止境的博客</title>
         <link>https://endless233333.github.io/posts/</link>
         <description>All Posts | 无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</title>
+    <link>https://endless233333.github.io/python_cli/</link>
+    <pubDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/python_cli/</guid>
+    <description><![CDATA[<p>在过去, 我经常使用 <code>python -m http.server</code> 用来在局域网中给别人分享一些文件, 所以我打算去翻翻自己电脑上安装的各种 python 包, 找一找能直接通过 <code>python -m</code> 使用的有用的模块。</p>
+<h2 id="python--m">python -m</h2>
+<p>在 <a href="https://docs.python.org/3/using/cmdline.html#cmdoption-m" target="_blank" rel="noopener noreffer ">python 的文档</a>中可以看到, <code>python -m  &lt;module-name&gt;</code> 会在 sys.path 中搜索指定模块, 并以 <code>__main__</code> 模块执行其内容。</p>
+<p>以 <code>__main__</code> 模块执行其内容有两种情况:</p>
+<ul>
+<li>如果是单独的 py 文件, 可以通过 <code>__name__ == '__main__'</code>, 一般是 <code>if __name__ == '__main__':</code></li>
+<li>如果是一个包, 执行其下的 <code>__main__.py</code></li>
+</ul>
+<p>因此只需要在 sys.path 中找到包含 <code>__main__.py</code> 这个文件的目录或者内容中有 <code>if __name__ == '__main__':</code> 的文件即可。</p>
+<h2 id="寻找">寻找</h2>
+<p>我电脑上的 python 包都在 /usr/lib/python3.11, cd 到此目录。</p>
+<p>使用 <code>find . -name &quot;__main__.py&quot;</code> 寻找 <code>__main__.py</code>.</p>
+<p>使用 <code>rg -l &quot;if __name__ == '__main__':&quot; | sort</code> 寻找内容中有 <code>if __name__ == '__main__':</code> 的文件。</p>
+<h2 id="筛选与使用">筛选与使用</h2>
+<p>/usr/lib/python3.11 下的 site-packages 存放第三方模块。</p>
+<p><strong>一般可以通过 <code>python -m xxx -h</code> 或 <code>python -m xxx --help</code> 获取帮助信息。</strong></p>
+<h3 id="标准库">标准库</h3>
+<h4 id="ast">ast</h4>
+<p>解析源代码成抽象语法树, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; echo &#34;print(&#39;hello&#39;)&#34; | python -m ast
+</span></span><span class="line"><span class="cl">Module(
+</span></span><span class="line"><span class="cl">   body=[
+</span></span><span class="line"><span class="cl">      Expr(
+</span></span><span class="line"><span class="cl">         value=Call(
+</span></span><span class="line"><span class="cl">            func=Name(id=&#39;print&#39;, ctx=Load()),
+</span></span><span class="line"><span class="cl">            args=[
+</span></span><span class="line"><span class="cl">               Constant(value=&#39;hello&#39;)],
+</span></span><span class="line"><span class="cl">            keywords=[]))],
+</span></span><span class="line"><span class="cl">   type_ignores=[])
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="base64">base64</h4>
+<p>用于 base64 编解码, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; echo -n &#34;hello&#34; | python -m base64
+</span></span><span class="line"><span class="cl">aGVsbG8=
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; echo -n &#34;aGVsbG8=&#34; | python -m base64 -d
+</span></span><span class="line"><span class="cl">hello%
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于 coreutils 里就有 base64, 所以直接在命令行使用这个模块意义不大。</p>
+<h4 id="compileall">compileall</h4>
+<p>可以将 .py 编译为 .pyc, 例如: <code>python -m compileall .</code>.</p>
+<p>默认 .pyc 会放在 <code>__pycache__</code> 目录下。</p>
+<h4 id="cprofile">cProfile</h4>
+<p>性能分析, 例如: <code>python -m cProfile -m base64 ./1.txt</code>.</p>
+<h4 id="curses">curses</h4>
+<p>用于创建 TUI 的模块。</p>
+<p><code>python -m curses.has_key</code> 检查 has_key.</p>
+<p><code>python -m curses.textpad</code> 打开一个简单的写字板。</p>
+<h4 id="ensurepip">ensurepip</h4>
+<p>用于确保安装了 pip, 没什么用。</p>
+<h4 id="gzip">gzip</h4>
+<p>例如: <code>python -m gzip --best ./test.mp4</code></p>
+<h4 id="httpserver">http.server</h4>
+<p>起一个简单的 http 服务。</p>
+<h4 id="imghdr">imghdr</h4>
+<p>确认图像类型, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m imghdr ./Pictures/7.png
+</span></span><span class="line"><span class="cl">./Pictures/7.png: png
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="jsontool">json.tool</h4>
+<p>校验并打印好看的 json, 例如: <code>python -m json.tool ~/data.json</code>.</p>
+<h4 id="lib2to3">lib2to3</h4>
+<p>用于将 python2 代码转化成 python3 代码, 可以直接 <code>2to3</code> 而不用 <code>python -m lib2to3</code>, 也没什么用。</p>
+<h4 id="mimetypes">mimetypes</h4>
+<p>显示文件的 mime 类型, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m mimetypes 1.sh
+</span></span><span class="line"><span class="cl">type: application/x-sh encoding: None
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="pdb">pdb</h4>
+<p>python debugger, 用法: <code>python -m pdb your_script.py</code>.</p>
+<h4 id="platform">platform</h4>
+<p>获取平台信息:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m platform
+</span></span><span class="line"><span class="cl">Linux-6.6.9-arch1-1-x86_64-with-glibc2.38
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="profile">profile</h4>
+<p>性能分析, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m profile 1.py
+</span></span><span class="line"><span class="cl">hello
+</span></span><span class="line"><span class="cl">         5 function calls in 0.013 seconds
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Ordered by: standard name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 1.py:1(&lt;module&gt;)
+</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 :0(exec)
+</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 :0(print)
+</span></span><span class="line"><span class="cl">        1    0.013    0.013    0.013    0.013 :0(setprofile)
+</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.013    0.013 profile:0(&lt;code object &lt;module&gt; at 0x7f373a01e5d0, file &#34;1.py&#34;, line 1&gt;)
+</span></span><span class="line"><span class="cl">        0    0.000             0.000          profile:0(profiler)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>选项 <code>-o</code> 可以保存分析结果到指定文件。</p>
+<h4 id="pstats">pstats</h4>
+<p>处理和显示 profile 的结果, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m pstats test
+</span></span><span class="line"><span class="cl">Welcome to the profile statistics browser.
+</span></span><span class="line"><span class="cl">test%
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="pydoc">pydoc</h4>
+<p>python 文档工具。</p>
+<h4 id="quopri">quopri</h4>
+<p><code>python -m quopri xxx</code> 对 xxx 进行 Quoted-Printable 编码, 选项 -d 解码。</p>
+<h4 id="random">random</h4>
+<p><code>python -m random</code> 测试产生随机数。</p>
+<h4 id="shlex">shlex</h4>
+<p>分词, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; echo -n &#34;print(&#39;hello&#39;)&#34; | python -m shlex
+</span></span><span class="line"><span class="cl">Token: &#39;print&#39;
+</span></span><span class="line"><span class="cl">Token: &#39;(&#39;
+</span></span><span class="line"><span class="cl">Token: &#34;&#39;hello&#39;&#34;
+</span></span><span class="line"><span class="cl">Token: &#39;)&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="site">site</h4>
+<p><code>python -m site</code> 打印 sys.path 等信息。</p>
+<h4 id="sysconfig">sysconfig</h4>
+<p><code>python -m sysconfig</code> 打印配置信息。</p>
+<h4 id="tabnanny">tabnanny</h4>
+<p>检查缩进, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m tabnanny -v 1.py
+</span></span><span class="line"><span class="cl">&#39;1.py&#39;: Clean bill of health.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="tarfile">tarfile</h4>
+<p>创建和解压 tar 文件, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; touch 1
+</span></span><span class="line"><span class="cl">&gt; ls
+</span></span><span class="line"><span class="cl">1
+</span></span><span class="line"><span class="cl">&gt; python -m tarfile -c 1.tar ./1
+</span></span><span class="line"><span class="cl">&gt; ls
+</span></span><span class="line"><span class="cl">1  1.tar
+</span></span><span class="line"><span class="cl">&gt; python -m tarfile -l 1.tar
+</span></span><span class="line"><span class="cl">./1
+</span></span><span class="line"><span class="cl">&gt; python -m tarfile -t 1.tar
+</span></span><span class="line"><span class="cl">[&lt;TarInfo &#39;./1&#39; at 0x7f9cc5ae5cc0&gt;]
+</span></span><span class="line"><span class="cl">&gt; rm 1
+</span></span><span class="line"><span class="cl">&gt; ls
+</span></span><span class="line"><span class="cl">1.tar
+</span></span><span class="line"><span class="cl">&gt; python -m tarfile -e 1.tar
+</span></span><span class="line"><span class="cl">&gt; ls
+</span></span><span class="line"><span class="cl">1  1.tar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="tkinter">tkinter</h4>
+<p>用于创建 GUI 的模块, 直接 <code>python -m tkinter</code> 的话会有一个简单的小窗口。</p>
+<h4 id="turtledemo">turtledemo</h4>
+<p>正如它的名字一样, 直接使用会出现 turtle 的 demo.</p>
+<h4 id="unittest">unittest</h4>
+<p>用于在命令行中直接运行单元测试。</p>
+<h4 id="uu">uu</h4>
+<p>进行 uu 编码和解码。</p>
+<h4 id="venv">venv</h4>
+<p>创建虚拟环境: <code>python -m venv aaa</code>
+激活虚拟环境: <code>source aaa/bin/activate</code>
+退除虚拟环境: <code>deactivate</code></p>
+<h4 id="xmlrpcserver">xmlrpc.server</h4>
+<p><code>python -m xmlrpc.server</code> 起一个简单的 xmlrpc 服务。</p>
+<h4 id="zipapp">zipapp</h4>
+<p>创建和执行 pyz.</p>
+<p>创建: <code>python -m zipapp -o 1.pyz -m &quot;myapp:main&quot; ./app</code></p>
+<p>执行: <code>python 1.pyz</code></p>
+<p>在已存在 <code>__main__.py</code> 的目录中不可以使用 <code>-m</code> 选项指定入口点。</p>
+]]></description>
+</item>
+<item>
     <title>我的 zsh 提示符</title>
     <link>https://endless233333.github.io/zsh_prompt/</link>
     <pubDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</pubDate>
@@ -12,7 +289,7 @@
     <description><![CDATA[<p>在 <a href="https://man.archlinux.org/man/zshparam.1" target="_blank" rel="noopener noreffer ">zshparam(1)</a> 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。</p>
 <h2 id="zsh-prompt-转义字符">zsh PROMPT 转义字符</h2>
 <p>zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 <a href="https://man.archlinux.org/man/zshmisc.1" target="_blank" rel="noopener noreffer ">zshmisc(1)</a>。</p>
-<p>在 zshmisc(1) 的 SIMPLE PROMPT ESCAPES 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:</p>
+<p>在 zshmisc(1) 的 <a href="https://man.archlinux.org/man/zshmisc.1#SIMPLE_PROMPT_ESCAPES" target="_blank" rel="noopener noreffer ">SIMPLE PROMPT ESCAPES</a> 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:</p>
 <ul>
 <li>登陆信息:
 <ul>

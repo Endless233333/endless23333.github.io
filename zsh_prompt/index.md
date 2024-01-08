@@ -6,7 +6,7 @@
 ## zsh PROMPT 转义字符
 zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 [zshmisc(1)](https://man.archlinux.org/man/zshmisc.1)。
 
-在 zshmisc(1) 的 SIMPLE PROMPT ESCAPES 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:
+在 zshmisc(1) 的 [SIMPLE PROMPT ESCAPES](https://man.archlinux.org/man/zshmisc.1#SIMPLE_PROMPT_ESCAPES) 一节中可以看到到所有的转义字符，以下列出一些我认为有用的:
 - 登陆信息:
   - `%M`: 完整的主机名
   - `%n`: 用户名
