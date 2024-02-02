@@ -1,4 +1,4 @@
-# 我的 zsh 提示符
+# zsh 提示符
 
 
 在 [zshparam(1)](https://man.archlinux.org/man/zshparam.1) 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。

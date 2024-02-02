@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>我的 archlinux 快速重装与配置 - 无止境的博客</title><meta name="Description" content=""><meta property="og:title" content="我的 archlinux 快速重装与配置" />
+<meta property="og:description" content="我习惯于隔断时间整理文件并重装电脑, 以下是我重装的过程, 用以之后方便复制粘贴, 主要参考了 archlinux wiki 和 archlinux 简明指南。 安装部分 无线网络连接 1 2 3 4 5 6 iwctl" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://endless233333.github.io/archlinux_quick_reinstall/" /><meta property="og:image" content="https://endless233333.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-02T15:51:20+08:00" />
+<meta property="article:modified_time" content="2024-02-02T15:51:20+08:00" /><meta property="og:site_name" content="无止境的博客" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://endless233333.github.io/avatar.png" /><meta name="twitter:title" content="我的 archlinux 快速重装与配置"/>
+<meta name="twitter:description" content="我习惯于隔断时间整理文件并重装电脑, 以下是我重装的过程, 用以之后方便复制粘贴, 主要参考了 archlinux wiki 和 archlinux 简明指南。 安装部分 无线网络连接 1 2 3 4 5 6 iwctl"/>
+<meta name="application-name" content="无止境的博客">
+<meta name="apple-mobile-web-app-title" content="无止境的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://endless233333.github.io/archlinux_quick_reinstall/" /><link rel="prev" href="https://endless233333.github.io/python_cli/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "我的 archlinux 快速重装与配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/endless233333.github.io\/archlinux_quick_reinstall\/"
+        },"genre": "posts","keywords": "archlinux, linux","wordcount":  508 ,
+        "url": "https:\/\/endless233333.github.io\/archlinux_quick_reinstall\/","datePublished": "2024-02-02T15:51:20+08:00","dateModified": "2024-02-02T15:51:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "无止境"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无止境的博客">无止境的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 首页 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无止境的博客">无止境的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">首页</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">我的 archlinux 快速重装与配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>无止境</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-02">2024-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;508 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装部分">安装部分</a>
+      <ul>
+        <li><a href="#无线网络连接">无线网络连接</a></li>
+        <li><a href="#更新系统时间">更新系统时间</a></li>
+        <li><a href="#分区">分区</a></li>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#基础配置">基础配置</a></li>
+        <li><a href="#语言">语言</a></li>
+        <li><a href="#引导程序">引导程序</a></li>
+        <li><a href="#基础安装结束">基础安装结束</a></li>
+        <li><a href="#后续安装">后续安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置部分">配置部分</a>
+      <ul>
+        <li><a href="#docker">docker</a></li>
+        <li><a href="#wireshark">wireshark</a></li>
+        <li><a href="#vmware">VMware</a></li>
+        <li><a href="#firefox">firefox</a></li>
+        <li><a href="#fcitx5">fcitx5</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>我习惯于隔断时间整理文件并重装电脑, 以下是我重装的过程, 用以之后方便复制粘贴, 主要参考了 <a href="https://wiki.archlinux.org/title/Installation_guide" target="_blank" rel="noopener noreffer ">archlinux wiki</a> 和 <a href="https://arch.icekylin.online/" target="_blank" rel="noopener noreffer ">archlinux 简明指南</a>。</p>
+<h2 id="安装部分">安装部分</h2>
+<h3 id="无线网络连接">无线网络连接</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">iwctl
+</span></span><span class="line"><span class="cl">device list
+</span></span><span class="line"><span class="cl">station wlan0 scan
+</span></span><span class="line"><span class="cl">station wlan0 get-networks
+</span></span><span class="line"><span class="cl">station wlan0 connect wifi-name
+</span></span><span class="line"><span class="cl">exit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="更新系统时间">更新系统时间</h3>
+<p><code>timedatectl</code></p>
+<h3 id="分区">分区</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkfs.ext4 /dev/nvme1n1p3
+</span></span><span class="line"><span class="cl">mkswap /dev/nvme1n1p2
+</span></span><span class="line"><span class="cl">mkfs.fat -F 32 /dev/nvme1n1p1
+</span></span><span class="line"><span class="cl">mount /dev/nvme1n1p3 /mnt
+</span></span><span class="line"><span class="cl">mount --mkdir /dev/nvme1n1p1 /mnt/boot
+</span></span><span class="line"><span class="cl">swapon /dev/nvme1n1p2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装">安装</h3>
+<p><code>pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim vi sudo zsh zsh-completions openssh intel-ucode</code></p>
+<h3 id="基础配置">基础配置</h3>
+<p>生成 fstab: <code>genfstab -U /mnt &gt; /mnt/etc/fstab</code></p>
+<p>chroot: <code>arch-chroot /mnt</code></p>
+<p>写入 hostname 例如 XXX: <code>vim /etc/hostname</code></p>
+<p>编辑 hosts: <code>vim /etc/hosts</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1   localhost
+</span></span><span class="line"><span class="cl">::1         localhost
+</span></span><span class="line"><span class="cl">127.0.1.1   XXX.localdomain XXX
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>时区: <code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
+<p>生成 adjtime: <code>hwclock --systohc</code></p>
+<p>改密码: <code>passwd</code></p>
+<h3 id="语言">语言</h3>
+<p><code>vim /etc/locale.gen</code></p>
+<p>去掉下面两个前面的井号:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">en_US.UTF-8 UTF-8
+</span></span><span class="line"><span class="cl">zh_CN.UTF-8 UTF-8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>locale-gen</code></p>
+<p><code>echo 'LANG=en_US.UTF-8'  &gt; /etc/locale.conf</code></p>
+<h3 id="引导程序">引导程序</h3>
+<p><code>bootctl --path=/boot install</code></p>
+<p><code>vim /boot/loader/loader.conf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">default	arch.conf
+</span></span><span class="line"><span class="cl">timeout 0
+</span></span><span class="line"><span class="cl">console-mode keep
+</span></span><span class="line"><span class="cl">editor	no
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>cat /etc/fstab</code></p>
+<p><code>vim /boot/loader/entries/arch.conf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title	Arch Linux
+</span></span><span class="line"><span class="cl">linux	/vmlinuz-linux
+</span></span><span class="line"><span class="cl">initrd	/initramfs-linux.img
+</span></span><span class="line"><span class="cl">options	root=UUID=... rw ibt=off nowatchdog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基础安装结束">基础安装结束</h3>
+<p><code>exit</code></p>
+<p><code>umount -R /mnt</code></p>
+<p><code>reboot</code></p>
+<h3 id="后续安装">后续安装</h3>
+<p><code>useradd -m -G wheel -s /bin/bash endless</code></p>
+<p><code>passwd endless</code></p>
+<p><code>EDITOR=vim visudo</code></p>
+<p>去掉 <code>#%wheel ALL=(ALL:ALL) ALL</code> 前的井号</p>
+<p><code>vim /etc/pacman.conf</code>
+去掉 <code>[multilib]</code> 对应两行前的井号</p>
+<p><code>systemctl enable --now NetworkManager.service</code></p>
+<p><code>pacman -Syyu</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sof-firmware alsa-firmware alsa-ucm-conf pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>network-manager-applet nm-connection-editor <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>mesa lib32-mesa vulkan-intel lib32-vulkan-intel <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>blueman bluez bluez-utils <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>gvfs gvfs-mtp udiskie <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-pinyin-zhwiki fcitx5-configtool <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>firefox flameshot syncthing <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>fd fzf mtr p7zip ntfs-3g scrcpy tmux bat bottom neofetch ripgrep tldr wget tree zip <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pacman -S gimp libreoffice-still chromium man-db man-pages obs-studio okular <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>docker docker-compose jdk-openjdk jdk17-openjdk jdk11-openjdk jdk8-openjdk hugo wireshark-qt php linux-headers
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">systemctl enable lightdm.service
+</span></span><span class="line"><span class="cl">systemctl enable bluetooth.service
+</span></span><span class="line"><span class="cl">systemctl enable systemd-boot-update.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git clone https://aur.archlinux.org/yay-bin.git
+</span></span><span class="line"><span class="cl">cd yay-bin
+</span></span><span class="line"><span class="cl">makepkg -si
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>yay -S yay-bin ttf-intel-one-mono drawio-desktop-bin visual-studio-code-bin vmware-workstation mycli goldendict-ng</code></p>
+<h2 id="配置部分">配置部分</h2>
+<h3 id="docker">docker</h3>
+<p><code>sudo usermod -aG docker endless</code></p>
+<h3 id="wireshark">wireshark</h3>
+<p><code>sudo usermod -a -G wireshark $USER</code></p>
+<h3 id="vmware">VMware</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl start vmware-networks-configuration.service
+</span></span><span class="line"><span class="cl">sudo systemctl enable vmware-networks.service vmware-usbarbitrator.service
+</span></span><span class="line"><span class="cl">modprobe -a vmw_vmci vmmon
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>MC60H-DWHD5-H80U9-6V85M-8280D</p>
+<h3 id="firefox">firefox</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">about:config
+</span></span><span class="line"><span class="cl">browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="fcitx5">fcitx5</h3>
+<p><code>vim /etc/environment</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GTK_IM_MODULE=fcitx
+</span></span><span class="line"><span class="cl">QT_IM_MODULE=fcitx
+</span></span><span class="line"><span class="cl">XMODIFIERS=@im=fcitx
+</span></span><span class="line"><span class="cl">SDL_IM_MODULE=fcitx
+</span></span><span class="line"><span class="cl">GLFW_IM_MODULE=ibus
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Input Method 加上 pinyin
+Addons 的 Classic User Interface 中的 Theme 改成 Material-Color-Red</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-02-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/archlinux_quick_reinstall/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/archlinux/">archlinux</a>,&nbsp;<a href="/tags/linux/">linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/python_cli/" class="prev" rel="prev" title="通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">无止境</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
