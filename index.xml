@@ -3,17 +3,18 @@
         <title>无止境的博客</title>
         <link>https://endless233333.github.io/</link>
         <description>无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 02 Feb 2024 15:51:20 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 14 Feb 2024 20:06:22 &#43;0800</lastBuildDate>
             <atom:link href="https://endless233333.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>我的 archlinux 快速重装与配置</title>
-    <link>https://endless233333.github.io/archlinux_quick_reinstall/</link>
-    <pubDate>Fri, 02 Feb 2024 15:51:20 &#43;0800</pubDate>
+    <title>我的 Arch Linux 安装和基础配置过程</title>
+    <link>https://endless233333.github.io/archlinux_install_and_config/</link>
+    <pubDate>Wed, 14 Feb 2024 20:06:22 &#43;0800</pubDate>
     <author>无止境</author>
-    <guid>https://endless233333.github.io/archlinux_quick_reinstall/</guid>
-    <description><![CDATA[<p>我习惯于隔断时间整理文件并重装电脑, 以下是我重装的过程, 用以之后方便复制粘贴, 主要参考了 <a href="https://wiki.archlinux.org/title/Installation_guide" target="_blank" rel="noopener noreffer ">archlinux wiki</a> 和 <a href="https://arch.icekylin.online/" target="_blank" rel="noopener noreffer ">archlinux 简明指南</a>。</p>
+    <guid>https://endless233333.github.io/archlinux_install_and_config/</guid>
+    <description><![CDATA[<p>本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4。</p>
 <h2 id="安装部分">安装部分</h2>
-<h3 id="无线网络连接">无线网络连接</h3>
+<h3 id="联网">联网</h3>
+<p>有线网络能自动联网, 无线网络使用 <code>iwctl</code> 进行连接:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -24,42 +25,122 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">iwctl
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">iwctl
 </span></span><span class="line"><span class="cl">device list
 </span></span><span class="line"><span class="cl">station wlan0 scan
 </span></span><span class="line"><span class="cl">station wlan0 get-networks
 </span></span><span class="line"><span class="cl">station wlan0 connect wifi-name
-</span></span><span class="line"><span class="cl">exit
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="更新系统时间">更新系统时间</h3>
-<p><code>timedatectl</code></p>
-<h3 id="分区">分区</h3>
+</div><p>可以使用 <code>ping</code> 检查网络连接。</p>
+<p>联网之后可以通过 <code>passwd</code> 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连。</p>
+<h3 id="更新系统时间">更新系统时间</h3>
+<p>使用 <code>timedatectl</code> 确保系统时间是准确的。</p>
+<h3 id="硬盘分区与格式">硬盘分区与格式</h3>
+<p>使用 <code>fdisk -l</code> 列出当前分区情况。</p>
+<p>分区步骤:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fdisk /dev/nvme0n1
+</span></span><span class="line"><span class="cl">n
+</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
+</span></span><span class="line"><span class="cl">+512M
+</span></span><span class="line"><span class="cl">n
+</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
+</span></span><span class="line"><span class="cl">+16G
+</span></span><span class="line"><span class="cl">n
+</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
+</span></span><span class="line"><span class="cl">t
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
+</span></span><span class="line"><span class="cl">t
+</span></span><span class="line"><span class="cl"><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="m">19</span>
+</span></span><span class="line"><span class="cl">w
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>格式化:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkfs.ext4 /dev/nvme1n1p3
-</span></span><span class="line"><span class="cl">mkswap /dev/nvme1n1p2
-</span></span><span class="line"><span class="cl">mkfs.fat -F 32 /dev/nvme1n1p1
-</span></span><span class="line"><span class="cl">mount /dev/nvme1n1p3 /mnt
-</span></span><span class="line"><span class="cl">mount --mkdir /dev/nvme1n1p1 /mnt/boot
-</span></span><span class="line"><span class="cl">swapon /dev/nvme1n1p2
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkfs.ext4 /dev/nvme0n1p3
+</span></span><span class="line"><span class="cl">mkswap /dev/nvme0n1p2
+</span></span><span class="line"><span class="cl">mkfs.fat -F <span class="m">32</span> /dev/nvme0n1p1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="安装">安装</h3>
-<p><code>pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim vi sudo zsh zsh-completions openssh intel-ucode</code></p>
-<h3 id="基础配置">基础配置</h3>
-<p>生成 fstab: <code>genfstab -U /mnt &gt; /mnt/etc/fstab</code></p>
-<p>chroot: <code>arch-chroot /mnt</code></p>
-<p>写入 hostname 例如 XXX: <code>vim /etc/hostname</code></p>
-<p>编辑 hosts: <code>vim /etc/hosts</code></p>
+</div><h3 id="挂载">挂载</h3>
+<p>按如下顺序挂载:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mount /dev/nvme0n1p3 /mnt
+</span></span><span class="line"><span class="cl">mount --mkdir /dev/nvme0n1p1 /mnt/boot
+</span></span><span class="line"><span class="cl">swapon /dev/nvme0n1p2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装系统和必要的功能性软件">安装系统和必要的功能性软件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim vi sudo openssh zsh intel-ucode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成-fstab-文件">生成 fstab 文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">genfstab -U /mnt &gt; /mnt/etc/fstab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="change-root">change root</h3>
+<p>使用 <code>arch-chroot /mnt</code> 把系统环境切换到新系统下。</p>
+<h3 id="设置时区">设置时区</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="设置主机名">设置主机名</h3>
+<p>在 <code>/etc/hostname</code> 中写入主机名, 例如 myarch.</p>
+<p>在 <code>vim /etc/hosts</code> 中写入以下内容:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -69,30 +150,35 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1   localhost
 </span></span><span class="line"><span class="cl">::1         localhost
-</span></span><span class="line"><span class="cl">127.0.1.1   XXX.localdomain XXX
+</span></span><span class="line"><span class="cl">127.0.1.1   myarch.localdomain myarch
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>时区: <code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
-<p>生成 adjtime: <code>hwclock --systohc</code></p>
-<p>改密码: <code>passwd</code></p>
-<h3 id="语言">语言</h3>
-<p><code>vim /etc/locale.gen</code></p>
-<p>去掉下面两个前面的井号:</p>
+</div><h3 id="硬件时间设置">硬件时间设置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">en_US.UTF-8 UTF-8
-</span></span><span class="line"><span class="cl">zh_CN.UTF-8 UTF-8
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hwclock --systohc
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>locale-gen</code></p>
-<p><code>echo 'LANG=en_US.UTF-8'  &gt; /etc/locale.conf</code></p>
-<h3 id="引导程序">引导程序</h3>
-<p><code>bootctl --path=/boot install</code></p>
-<p><code>vim /boot/loader/loader.conf</code></p>
+</div><h3 id="设置-locale">设置 Locale</h3>
+<p>编辑 <code>/etc/locale.gen</code>, 去掉 <code>en_US.UTF-8 UTF-8</code> 和 <code>zh_CN.UTF-8 UTF-8</code> 前的井号。</p>
+<p>然后使用 <code>locale-gen</code> 生成 <code>locale</code>.</p>
+<p><code>echo 'LANG=en_US.UTF-8'  &gt; /etc/locale.conf</code> 设定 LANG 变量。</p>
+<h3 id="设置-root-用户密码">设置 root 用户密码</h3>
+<p><code>passwd</code> 然后输两遍密码。</p>
+<h3 id="安装引导程序">安装引导程序</h3>
+<p>安装 <code>systemd-boot</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bootctl --path<span class="o">=</span>/boot install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编辑 <code>/boot/loader/loader.conf</code> 配置启动选单:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -107,8 +193,105 @@
 </span></span><span class="line"><span class="cl">editor	no
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>cat /etc/fstab</code></p>
-<p><code>vim /boot/loader/entries/arch.conf</code></p>
+</div><p>使用 <code>cat /etc/fstab</code> 查看根分区的 UUID.</p>
+<p>编辑 <code>/boot/loader/entries/arch.conf</code> 增加启动选项:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title	Arch Linux
+</span></span><span class="line"><span class="cl">linux	/vmlinuz-linux
+</span></span><span class="line"><span class="cl">initrd  /intel-ucode.img
+</span></span><span class="line"><span class="cl">initrd	/initramfs-linux.img
+</span></span><span class="line"><span class="cl">options	root=UUID=... rw ibt=off nowatchdog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="准备非-root-用户">准备非 root 用户</h3>
+<p>创建用户:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">useradd -m -G wheel -s /bin/bash XXX
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置密码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">passwd XXX
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编辑 <code>sudoers</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">EDITOR=vim visudo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>去掉 <code>#%wheel ALL=(ALL:ALL) ALL</code> 前的井号。</p>
+<h3 id="重启">重启</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">umount -R /mnt
+</span></span><span class="line"><span class="cl">reboot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="联网-1">联网</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now NetworkManager
+</span></span><span class="line"><span class="cl">nmcli device wifi connect 名 password 密
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>联网后可以通过 <code>systemctl start sshd</code> 开启 ssh 服务。</p>
+<h3 id="开启-32-位支持库">开启 32 位支持库</h3>
+<p>编辑 <code>/etc/pacman.conf</code> 去掉 <code>[multilib]</code> 及其下一行前的井号。</p>
+<p><code>pacman -Syyu</code> 更新一下。</p>
+<h3 id="一大波安装">一大波安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pacman -S <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting zsh-theme-powerlevel10k <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>xfce4 xfce4-goodies lightdm lightdm-gtk-greeter gvfs gvfs-mtp udiskie sof-firmware alsa-firmware alsa-ucm-conf pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth network-manager-applet nm-connection-editor <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>mesa lib32-mesa vulkan-intel lib32-vulkan-intel <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>blueman bluez bluez-utils <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-pinyin-zhwiki fcitx5-configtool <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>firefox chromium flameshot okular steam libreoffice-still libreoffice-still-zh-cn man-db man-pages syncthing fd fzf git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="yay-安装">yay 安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -117,120 +300,33 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title	Arch Linux
-</span></span><span class="line"><span class="cl">linux	/vmlinuz-linux
-</span></span><span class="line"><span class="cl">initrd	/initramfs-linux.img
-</span></span><span class="line"><span class="cl">options	root=UUID=... rw ibt=off nowatchdog
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="基础安装结束">基础安装结束</h3>
-<p><code>exit</code></p>
-<p><code>umount -R /mnt</code></p>
-<p><code>reboot</code></p>
-<h3 id="后续安装">后续安装</h3>
-<p><code>useradd -m -G wheel -s /bin/bash endless</code></p>
-<p><code>passwd endless</code></p>
-<p><code>EDITOR=vim visudo</code></p>
-<p>去掉 <code>#%wheel ALL=(ALL:ALL) ALL</code> 前的井号</p>
-<p><code>vim /etc/pacman.conf</code>
-去掉 <code>[multilib]</code> 对应两行前的井号</p>
-<p><code>systemctl enable --now NetworkManager.service</code></p>
-<p><code>pacman -Syyu</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>sof-firmware alsa-firmware alsa-ucm-conf pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>network-manager-applet nm-connection-editor <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>mesa lib32-mesa vulkan-intel lib32-vulkan-intel <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>blueman bluez bluez-utils <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>gvfs gvfs-mtp udiskie <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-pinyin-zhwiki fcitx5-configtool <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>firefox flameshot syncthing <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>fd fzf mtr p7zip ntfs-3g scrcpy tmux bat bottom neofetch ripgrep tldr wget tree zip <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>git
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pacman -S gimp libreoffice-still chromium man-db man-pages obs-studio okular <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>docker docker-compose jdk-openjdk jdk17-openjdk jdk11-openjdk jdk8-openjdk hugo wireshark-qt php linux-headers
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">systemctl enable lightdm.service
-</span></span><span class="line"><span class="cl">systemctl enable bluetooth.service
-</span></span><span class="line"><span class="cl">systemctl enable systemd-boot-update.service
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git clone https://aur.archlinux.org/yay-bin.git
-</span></span><span class="line"><span class="cl">cd yay-bin
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://aur.archlinux.org/yay-bin.git
+</span></span><span class="line"><span class="cl">pacman -R yay-bin
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> yay-bin
 </span></span><span class="line"><span class="cl">makepkg -si
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>yay -S yay-bin ttf-intel-one-mono drawio-desktop-bin visual-studio-code-bin vmware-workstation mycli goldendict-ng</code></p>
-<h2 id="配置部分">配置部分</h2>
-<h3 id="docker">docker</h3>
-<p><code>sudo usermod -aG docker endless</code></p>
-<h3 id="wireshark">wireshark</h3>
-<p><code>sudo usermod -a -G wireshark $USER</code></p>
-<h3 id="vmware">VMware</h3>
+</div><p>常用软件:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl start vmware-networks-configuration.service
-</span></span><span class="line"><span class="cl">sudo systemctl enable vmware-networks.service vmware-usbarbitrator.service
-</span></span><span class="line"><span class="cl">modprobe -a vmw_vmci vmmon
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">yay -S yay-bin clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>MC60H-DWHD5-H80U9-6V85M-8280D</p>
-<h3 id="firefox">firefox</h3>
+</div><h3 id="启动一些服务">启动一些服务</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">about:config
-</span></span><span class="line"><span class="cl">browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> lightdm.service bluetooth.service systemd-boot-update.service
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="fcitx5">fcitx5</h3>
-<p><code>vim /etc/environment</code></p>
+</div><h2 id="配置部分">配置部分</h2>
+<h3 id="fcitx5">fcitx5</h3>
+<p>编辑 <code>/etc/environment</code> 加入以下内容:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -247,8 +343,155 @@
 </span></span><span class="line"><span class="cl">GLFW_IM_MODULE=ibus
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Input Method 加上 pinyin
-Addons 的 Classic User Interface 中的 Theme 改成 Material-Color-Red</p>
+</div><p>fcitx5 设置:</p>
+<ul>
+<li>Input Method 加上 pinyin</li>
+<li>Addons -&gt; Classic User Interface -&gt; Theme -&gt; Material-Color-Red</li>
+</ul>
+<h3 id="firefox">firefox</h3>
+<p>地址栏输入 <code>about:config</code>, 然后将 <code>browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar</code> 改成 false.</p>
+<h3 id="libreoffice">libreoffice</h3>
+<p>tools -&gt; options -&gt; language settings -&gt; user interface 选中文</p>
+<h3 id="xfce4">xfce4</h3>
+<p>中文化, 在 ~/.xinitrc 或 ~/.xprofile 里加上：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">export</span> <span class="n">LANG</span><span class="o">=</span><span class="n">zh_CN</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">LANGUAGE</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">:</span><span class="n">en_US</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>xfce4 设置:
+Appearance</p>
+<ul>
+<li>style: Adwaita-dark</li>
+<li>icons: elementary</li>
+<li>fonts:
+<ul>
+<li>default font: IntelOne Mono Regular</li>
+<li>dpi: 120</li>
+</ul>
+</li>
+</ul>
+<p>Desktop
+桌面
+icon: default icon 去掉前三个</p>
+<p>Panel</p>
+<ul>
+<li>panel1-items
+<ul>
+<li>whisker menu
+<ul>
+<li>commands 勾上 restart, shut down, suspend</li>
+</ul>
+</li>
+<li>window buttons</li>
+<li>separator</li>
+<li>network monitor
+<ul>
+<li>update interval: 0.5</li>
+<li>show values as bits</li>
+<li>present data as: Bars and values</li>
+</ul>
+</li>
+<li>system load monitor
+<ul>
+<li>update interval: 1000</li>
+<li>只留下 cpu 和 mem</li>
+</ul>
+</li>
+<li>mount devices</li>
+<li>separator</li>
+<li>stautus tray plugin</li>
+<li>pulseaudio plugin</li>
+<li>notification plugin</li>
+<li>separator</li>
+<li>clock
+<ul>
+<li>clock option:</li>
+<li>layout: date only</li>
+<li>font: 12</li>
+<li>format: custom format %m-%d</li>
+</ul>
+</li>
+<li>clock
+<ul>
+<li>clock option:</li>
+<li>layout: time only</li>
+<li>font: 16</li>
+<li>format: 14:38</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>panel2-items
+<ul>
+<li>前两个 launcher 上移一个，中间加各种 launcher</li>
+</ul>
+</li>
+</ul>
+<p>Window Manager</p>
+<ul>
+<li>keyboard
+<ul>
+<li>Window operations menu 改成 super+space</li>
+<li>改下 tile window to the &hellip;</li>
+</ul>
+</li>
+</ul>
+<p>Xfce Screensaver</p>
+<ul>
+<li>时间改成 60</li>
+</ul>
+<p>Terminal</p>
+<ul>
+<li>Appearance
+<ul>
+<li>字体: IntelOne Mono Regular 14</li>
+<li>background: Transparent Background 0.9</li>
+</ul>
+</li>
+<li>Colors
+<ul>
+<li>Background Color: 黑色上面那个</li>
+</ul>
+</li>
+</ul>
+<p>Keyboard</p>
+<ul>
+<li>Application Shortcuts
+<ul>
+<li>xflock4 super+l</li>
+<li>flameshot gui shift+super+s</li>
+<li>xfce4-appfinder 改成 alt+space</li>
+</ul>
+</li>
+</ul>
+<p>Power Manager</p>
+<ul>
+<li>General
+<ul>
+<li>when power button is pressed: Ask</li>
+</ul>
+</li>
+<li>Display
+<ul>
+<li>连接电源时拉满</li>
+</ul>
+</li>
+</ul>
+<p>Session and Startup</p>
+<ul>
+<li>Application Autostart
+<ul>
+<li>打开 Clipman</li>
+<li>添加 thunar 命令是 thunar &ndash;daemon</li>
+</ul>
+</li>
+</ul>
 ]]></description>
 </item>
 <item>
