@@ -3,13 +3,21 @@
         <title>All Posts - 无止境的博客</title>
         <link>https://endless233333.github.io/posts/</link>
         <description>All Posts | 无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 14 Feb 2024 20:06:22 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 18 Feb 2024 20:39:26 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>我的 Arch Linux 常用软件</title>
+    <link>https://endless233333.github.io/archlinux_frequently_used_apps/</link>
+    <pubDate>Sun, 18 Feb 2024 20:39:26 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/archlinux_frequently_used_apps/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>我的 Arch Linux 安装和基础配置过程</title>
     <link>https://endless233333.github.io/archlinux_install_and_config/</link>
     <pubDate>Wed, 14 Feb 2024 20:06:22 &#43;0800</pubDate>
     <author>无止境</author>
     <guid>https://endless233333.github.io/archlinux_install_and_config/</guid>
-    <description><![CDATA[<p>本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4。</p>
+    <description><![CDATA[<p>本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4, intel cpu + 核显。</p>
 <h2 id="安装部分">安装部分</h2>
 <h3 id="联网">联网</h3>
 <p>有线网络能自动联网, 无线网络使用 <code>iwctl</code> 进行连接:</p>
@@ -32,7 +40,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以使用 <code>ping</code> 检查网络连接。</p>
-<p>联网之后可以通过 <code>passwd</code> 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连。</p>
+<p>联网之后可以通过 <code>passwd</code> 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连, 方便复制粘贴。</p>
 <h3 id="更新系统时间">更新系统时间</h3>
 <p>使用 <code>timedatectl</code> 确保系统时间是准确的。</p>
 <h3 id="硬盘分区与格式">硬盘分区与格式</h3>
@@ -290,6 +298,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="yay-安装">yay 安装</h3>
+<p>使用非 root 用户:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

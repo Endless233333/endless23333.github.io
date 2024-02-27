@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>linux - Tag - 无止境的博客</title>
+        <title>Linux - Tag - 无止境的博客</title>
         <link>https://endless233333.github.io/tags/linux/</link>
-        <description>linux - Tag - 无止境的博客</description>
+        <description>Linux - Tag - 无止境的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</title>
     <link>https://endless233333.github.io/python_cli/</link>

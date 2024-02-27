@@ -1,7 +1,7 @@
 # 我的 Arch Linux 安装和基础配置过程
 
 
-本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4。
+本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4, intel cpu + 核显。
 
 ## 安装部分
 ### 联网
@@ -17,7 +17,7 @@ exit
 
 可以使用 `ping` 检查网络连接。
 
-联网之后可以通过 `passwd` 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连。
+联网之后可以通过 `passwd` 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连, 方便复制粘贴。
 
 ### 更新系统时间
 使用 `timedatectl` 确保系统时间是准确的。
@@ -181,6 +181,7 @@ firefox chromium flameshot okular steam libreoffice-still libreoffice-still-zh-c
 ```
 
 ### yay 安装
+使用非 root 用户:
 ```sh
 git clone https://aur.archlinux.org/yay-bin.git
 pacman -R yay-bin

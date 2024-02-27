@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>我的 Arch Linux 安装和基础配置过程 - 无止境的博客</title><meta name="Description" content=""><meta property="og:title" content="我的 Arch Linux 安装和基础配置过程" />
-<meta property="og:description" content="本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4。 安装部分 联网 有线网络能自动联网, 无线网络使用 iwctl 进行连接: 1 2 3 4 5" />
+<meta property="og:description" content="本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4, intel cpu &#43; 核显。 安装部分 联网 有线网络能自动联网, 无线网络使用 iwctl 进行连接: 1 2 3" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://endless233333.github.io/archlinux_install_and_config/" /><meta property="og:image" content="https://endless233333.github.io/avatar.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-02-14T20:06:22+08:00" />
@@ -13,11 +13,11 @@
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://endless233333.github.io/avatar.png" /><meta name="twitter:title" content="我的 Arch Linux 安装和基础配置过程"/>
-<meta name="twitter:description" content="本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4。 安装部分 联网 有线网络能自动联网, 无线网络使用 iwctl 进行连接: 1 2 3 4 5"/>
+<meta name="twitter:description" content="本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4, intel cpu &#43; 核显。 安装部分 联网 有线网络能自动联网, 无线网络使用 iwctl 进行连接: 1 2 3"/>
 <meta name="application-name" content="无止境的博客">
 <meta name="apple-mobile-web-app-title" content="无止境的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://endless233333.github.io/archlinux_install_and_config/" /><link rel="prev" href="https://endless233333.github.io/python_cli/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://endless233333.github.io/archlinux_install_and_config/" /><link rel="prev" href="https://endless233333.github.io/python_cli/" /><link rel="next" href="https://endless233333.github.io/archlinux_frequently_used_apps/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/endless233333.github.io\/archlinux_install_and_config\/"
-        },"genre": "posts","wordcount":  1016 ,
+        },"genre": "posts","wordcount":  1032 ,
         "url": "https:\/\/endless233333.github.io\/archlinux_install_and_config\/","datePublished": "2024-02-14T20:06:22+08:00","dateModified": "2024-02-14T20:06:22+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,7 +70,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">我的 Arch Linux 安装和基础配置过程</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>无止境</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1016 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1032 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -113,7 +113,7 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4。</p>
+            </div><div class="content" id="content"><p>本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4, intel cpu + 核显。</p>
 <h2 id="安装部分">安装部分</h2>
 <h3 id="联网">联网</h3>
 <p>有线网络能自动联网, 无线网络使用 <code>iwctl</code> 进行连接:</p>
@@ -136,7 +136,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以使用 <code>ping</code> 检查网络连接。</p>
-<p>联网之后可以通过 <code>passwd</code> 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连。</p>
+<p>联网之后可以通过 <code>passwd</code> 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连, 方便复制粘贴。</p>
 <h3 id="更新系统时间">更新系统时间</h3>
 <p>使用 <code>timedatectl</code> 确保系统时间是准确的。</p>
 <h3 id="硬盘分区与格式">硬盘分区与格式</h3>
@@ -394,6 +394,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="yay-安装">yay 安装</h3>
+<p>使用非 root 用户:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -617,7 +618,8 @@ icon: default icon 去掉前三个</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/python_cli/" class="prev" rel="prev" title="通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</a></div>
+    <div class="post-nav"><a href="/python_cli/" class="prev" rel="prev" title="通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</a>
+            <a href="/archlinux_frequently_used_apps/" class="next" rel="next" title="我的 Arch Linux 常用软件">我的 Arch Linux 常用软件<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
