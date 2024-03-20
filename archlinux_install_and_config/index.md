@@ -171,7 +171,7 @@ nmcli device wifi connect 名 password 密
 ### 一大波安装
 ```sh
 pacman -S \
-zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting zsh-theme-powerlevel10k \
+zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting \
 xfce4 xfce4-goodies lightdm lightdm-gtk-greeter gvfs gvfs-mtp udiskie sof-firmware alsa-firmware alsa-ucm-conf pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth network-manager-applet nm-connection-editor \
 adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
 mesa lib32-mesa vulkan-intel lib32-vulkan-intel \
@@ -191,7 +191,7 @@ makepkg -si
 
 常用软件:
 ```sh
-yay -S yay-bin clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin
+yay -S yay-bin clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin zsh-theme-powerlevel10k
 ```
 
 ### 启动一些服务
