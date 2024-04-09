@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>我的 Arch Linux 常用软件 - 无止境的博客</title><meta name="Description" content=""><meta property="og:title" content="我的 Arch Linux 常用软件" />
-<meta property="og:description" content="" />
+        <title>linux 多种终端复用器简介 - 无止境的博客</title><meta name="Description" content=""><meta property="og:title" content="linux 多种终端复用器简介" />
+<meta property="og:description" content="Linux 终端复用器允许用户在单个窗口中创建或启用多个终端, 通常在连接到远程服务器时会使用, 即便链接意外中断, 也可以通过终端复用器的相关功能恢复到之" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/archlinux_frequently_used_apps/" /><meta property="og:image" content="http://localhost:1313/avatar.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-02-18T20:39:26+08:00" />
-<meta property="article:modified_time" content="2024-02-18T20:39:26+08:00" /><meta property="og:site_name" content="无止境的博客" />
+<meta property="og:url" content="https://endless233333.github.io/terminal_multiplexer/" /><meta property="og:image" content="https://endless233333.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-09T10:48:05+08:00" />
+<meta property="article:modified_time" content="2024-04-09T10:48:05+08:00" /><meta property="og:site_name" content="无止境的博客" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="http://localhost:1313/avatar.png" /><meta name="twitter:title" content="我的 Arch Linux 常用软件"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:image" content="https://endless233333.github.io/avatar.png" /><meta name="twitter:title" content="linux 多种终端复用器简介"/>
+<meta name="twitter:description" content="Linux 终端复用器允许用户在单个窗口中创建或启用多个终端, 通常在连接到远程服务器时会使用, 即便链接意外中断, 也可以通过终端复用器的相关功能恢复到之"/>
 <meta name="application-name" content="无止境的博客">
 <meta name="apple-mobile-web-app-title" content="无止境的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/archlinux_frequently_used_apps/" /><link rel="prev" href="http://localhost:1313/archlinux_install_and_config/" /><link rel="next" href="http://localhost:1313/terminal_multiplexer/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://endless233333.github.io/terminal_multiplexer/" /><link rel="prev" href="https://endless233333.github.io/archlinux_install_and_config/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "我的 Arch Linux 常用软件",
+        "headline": "linux 多种终端复用器简介",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1313\/archlinux_frequently_used_apps\/"
-        },"genre": "posts","wordcount":  0 ,
-        "url": "http:\/\/localhost:1313\/archlinux_frequently_used_apps\/","datePublished": "2024-02-18T20:39:26+08:00","dateModified": "2024-02-18T20:39:26+08:00","publisher": {
+            "@id": "https:\/\/endless233333.github.io\/terminal_multiplexer\/"
+        },"genre": "posts","keywords": "linux","wordcount":  586 ,
+        "url": "https:\/\/endless233333.github.io\/terminal_multiplexer\/","datePublished": "2024-04-09T10:48:05+08:00","dateModified": "2024-04-09T10:48:05+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -67,25 +67,73 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">我的 Arch Linux 常用软件</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">linux 多种终端复用器简介</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>无止境</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-18">2024-02-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;0 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;0 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-09">2024-04-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;586 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#screen">screen</a></li>
+    <li><a href="#tmux">tmux</a></li>
+    <li><a href="#zellij">zellij</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Linux 终端复用器允许用户在单个窗口中创建或启用多个终端, 通常在连接到远程服务器时会使用, 即便链接意外中断, 也可以通过终端复用器的相关功能恢复到之前的工作状态。</p>
+<p>本文将简要介绍 screen, tmux 和 zellij 三款终端复用器, 其中 screen 和 tmux 在 ubuntu server 22.04 中自带, 而 zellij 的使用比较方便。</p>
+<h2 id="screen">screen</h2>
+<p>Screen 是一个全屏窗口管理器, 它在交互式 shell 之间多路传输物理终端。在用户离开它管理的窗口时, 窗口内的程序仍会运行。</p>
+<p>创建一个会话可以使用以下三种方式:</p>
+<ul>
+<li><code>screen</code>
+<ul>
+<li>直接创建并以 linux 的 hostname 命名</li>
+</ul>
+</li>
+<li><code>screen -S &lt;name&gt;</code>
+<ul>
+<li>创建指定名字的会话</li>
+</ul>
+</li>
+<li><code>screen -R &lt;name&gt;</code>
+<ul>
+<li>先尝试进入指定会话, 如果没有创建的话则创建它</li>
+</ul>
+</li>
+</ul>
+<p>创建的会话是可以重名的, 不过它们的 pid 不同, 可以通过这来区分, 建议使用第三种方式创建。</p>
+<p>在进入绘画后使用 <code>ctrl-a d</code> 分离会话。</p>
+<p>使用 <code>screen -ls</code> 可以查看所有会话的 pid, 名字, 状态。</p>
+<p>使用 <code>screen -r [pid/name]</code> 或 <code>screen -R [pid/name]</code> 重新进入会话。</p>
+<p>在会话中 <code>exit</code> 或 <code>ctrl-d</code> 终止此会话, 也可以在外面通过 <code>screen -R [pid/name] -X quit</code> 终止。</p>
+<h2 id="tmux">tmux</h2>
+<p>tmux 可以管理多个会话, 一个会话中可以有多个窗口, 一个窗口中可以划分称多个面板。</p>
+<p>tmux 中的快捷键都需要先 <code>ctrl-b</code> 才能使用, <code>ctrl+b ?</code> 获取帮助。</p>
+<p>使用 <code>tmux</code> 或者 <code>tmux new -s &lt;name&gt;</code> 创建一个新的会话, 后者可以指定名字。</p>
+<p><code>ctrl+b d</code> 或者 <code>tmux detach</code> 分离会话。</p>
+<p><code>tmux ls</code> 列出列出所有会话。</p>
+<p><code>tmux attach -t [id/name]</code> 进入会话。</p>
+<p><code>tmux kill-session -t [id/name]</code> 删除会话。</p>
+<h2 id="zellij">zellij</h2>
+<p>zellij 使用 rust 开发, 默认情况下进入 zellij 后快捷键都会在屏幕下方提示, 所以入门门槛比较低。</p>
+<p>直接 <code>zellij</code> 就可以进入 zellij, 使用 <code>ctrl-s d</code> 分离会话。</p>
+<p>在会话中 <code>ctrl-o w ctrl-r</code> 重命名会话。</p>
+<p><code>zellij ls</code> 列出所有会话。</p>
+<p><code>zellij a &lt;name&gt;</code> 进入会话。</p>
+<p><code>zellij d &lt;name&gt;</code> 删除会话。</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-02-18</span>
+                <span>Updated on 2024-04-09</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/archlinux_frequently_used_apps/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/terminal_multiplexer/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
                 <span></span>
@@ -94,14 +142,13 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/archlinux_install_and_config/" class="prev" rel="prev" title="我的 Arch Linux 安装和基础配置过程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>我的 Arch Linux 安装和基础配置过程</a>
-            <a href="/terminal_multiplexer/" class="next" rel="next" title="linux 多种终端复用器简介">linux 多种终端复用器简介<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/archlinux_install_and_config/" class="prev" rel="prev" title="我的 Arch Linux 安装和基础配置过程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>我的 Arch Linux 安装和基础配置过程</a></div>
 </div>
 </article></div>
             </main><footer class="footer">

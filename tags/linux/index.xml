@@ -3,7 +3,57 @@
         <title>Linux - Tag - 无止境的博客</title>
         <link>https://endless233333.github.io/tags/linux/</link>
         <description>Linux - Tag - 无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 09 Apr 2024 10:48:05 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>linux 多种终端复用器简介</title>
+    <link>https://endless233333.github.io/terminal_multiplexer/</link>
+    <pubDate>Tue, 09 Apr 2024 10:48:05 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/terminal_multiplexer/</guid>
+    <description><![CDATA[<p>Linux 终端复用器允许用户在单个窗口中创建或启用多个终端, 通常在连接到远程服务器时会使用, 即便链接意外中断, 也可以通过终端复用器的相关功能恢复到之前的工作状态。</p>
+<p>本文将简要介绍 screen, tmux 和 zellij 三款终端复用器, 其中 screen 和 tmux 在 ubuntu server 22.04 中自带, 而 zellij 的使用比较方便。</p>
+<h2 id="screen">screen</h2>
+<p>Screen 是一个全屏窗口管理器, 它在交互式 shell 之间多路传输物理终端。在用户离开它管理的窗口时, 窗口内的程序仍会运行。</p>
+<p>创建一个会话可以使用以下三种方式:</p>
+<ul>
+<li><code>screen</code>
+<ul>
+<li>直接创建并以 linux 的 hostname 命名</li>
+</ul>
+</li>
+<li><code>screen -S &lt;name&gt;</code>
+<ul>
+<li>创建指定名字的会话</li>
+</ul>
+</li>
+<li><code>screen -R &lt;name&gt;</code>
+<ul>
+<li>先尝试进入指定会话, 如果没有创建的话则创建它</li>
+</ul>
+</li>
+</ul>
+<p>创建的会话是可以重名的, 不过它们的 pid 不同, 可以通过这来区分, 建议使用第三种方式创建。</p>
+<p>在进入绘画后使用 <code>ctrl-a d</code> 分离会话。</p>
+<p>使用 <code>screen -ls</code> 可以查看所有会话的 pid, 名字, 状态。</p>
+<p>使用 <code>screen -r [pid/name]</code> 或 <code>screen -R [pid/name]</code> 重新进入会话。</p>
+<p>在会话中 <code>exit</code> 或 <code>ctrl-d</code> 终止此会话, 也可以在外面通过 <code>screen -R [pid/name] -X quit</code> 终止。</p>
+<h2 id="tmux">tmux</h2>
+<p>tmux 可以管理多个会话, 一个会话中可以有多个窗口, 一个窗口中可以划分称多个面板。</p>
+<p>tmux 中的快捷键都需要先 <code>ctrl-b</code> 才能使用, <code>ctrl+b ?</code> 获取帮助。</p>
+<p>使用 <code>tmux</code> 或者 <code>tmux new -s &lt;name&gt;</code> 创建一个新的会话, 后者可以指定名字。</p>
+<p><code>ctrl+b d</code> 或者 <code>tmux detach</code> 分离会话。</p>
+<p><code>tmux ls</code> 列出列出所有会话。</p>
+<p><code>tmux attach -t [id/name]</code> 进入会话。</p>
+<p><code>tmux kill-session -t [id/name]</code> 删除会话。</p>
+<h2 id="zellij">zellij</h2>
+<p>zellij 使用 rust 开发, 默认情况下进入 zellij 后快捷键都会在屏幕下方提示, 所以入门门槛比较低。</p>
+<p>直接 <code>zellij</code> 就可以进入 zellij, 使用 <code>ctrl-s d</code> 分离会话。</p>
+<p>在会话中 <code>ctrl-o w ctrl-r</code> 重命名会话。</p>
+<p><code>zellij ls</code> 列出所有会话。</p>
+<p><code>zellij a &lt;name&gt;</code> 进入会话。</p>
+<p><code>zellij d &lt;name&gt;</code> 删除会话。</p>
+]]></description>
+</item>
+<item>
     <title>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</title>
     <link>https://endless233333.github.io/python_cli/</link>
     <pubDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</pubDate>
