@@ -1,70 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>无止境的博客</title>
-        <link>https://endless233333.github.io/</link>
+        <link>http://localhost:1313/</link>
         <description>无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 09 Apr 2024 10:48:05 &#43;0800</lastBuildDate>
-            <atom:link href="https://endless233333.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 18 May 2024 22:37:29 &#43;0800</lastBuildDate>
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>linux 多种终端复用器简介</title>
-    <link>https://endless233333.github.io/terminal_multiplexer/</link>
-    <pubDate>Tue, 09 Apr 2024 10:48:05 &#43;0800</pubDate>
+    <title>Archlinux 安装记录与常用软件</title>
+    <link>http://localhost:1313/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Sat, 18 May 2024 22:37:29 &#43;0800</pubDate>
     <author>无止境</author>
-    <guid>https://endless233333.github.io/terminal_multiplexer/</guid>
-    <description><![CDATA[<p>Linux 终端复用器允许用户在单个窗口中创建或启用多个终端, 通常在连接到远程服务器时会使用, 即便链接意外中断, 也可以通过终端复用器的相关功能恢复到之前的工作状态。</p>
-<p>本文将简要介绍 screen, tmux 和 zellij 三款终端复用器, 其中 screen 和 tmux 在 ubuntu server 22.04 中自带, 而 zellij 的使用比较方便。</p>
-<h2 id="screen">screen</h2>
-<p>Screen 是一个全屏窗口管理器, 它在交互式 shell 之间多路传输物理终端。在用户离开它管理的窗口时, 窗口内的程序仍会运行。</p>
-<p>创建一个会话可以使用以下三种方式:</p>
-<ul>
-<li><code>screen</code>
-<ul>
-<li>直接创建并以 linux 的 hostname 命名</li>
-</ul>
-</li>
-<li><code>screen -S &lt;name&gt;</code>
-<ul>
-<li>创建指定名字的会话</li>
-</ul>
-</li>
-<li><code>screen -R &lt;name&gt;</code>
-<ul>
-<li>先尝试进入指定会话, 如果没有创建的话则创建它</li>
-</ul>
-</li>
-</ul>
-<p>创建的会话是可以重名的, 不过它们的 pid 不同, 可以通过这来区分, 建议使用第三种方式创建。</p>
-<p>在进入绘画后使用 <code>ctrl-a d</code> 分离会话。</p>
-<p>使用 <code>screen -ls</code> 可以查看所有会话的 pid, 名字, 状态。</p>
-<p>使用 <code>screen -r [pid/name]</code> 或 <code>screen -R [pid/name]</code> 重新进入会话。</p>
-<p>在会话中 <code>exit</code> 或 <code>ctrl-d</code> 终止此会话, 也可以在外面通过 <code>screen -R [pid/name] -X quit</code> 终止。</p>
-<h2 id="tmux">tmux</h2>
-<p>tmux 可以管理多个会话, 一个会话中可以有多个窗口, 一个窗口中可以划分称多个面板。</p>
-<p>tmux 中的快捷键都需要先 <code>ctrl-b</code> 才能使用, <code>ctrl+b ?</code> 获取帮助。</p>
-<p>使用 <code>tmux</code> 或者 <code>tmux new -s &lt;name&gt;</code> 创建一个新的会话, 后者可以指定名字。</p>
-<p><code>ctrl+b d</code> 或者 <code>tmux detach</code> 分离会话。</p>
-<p><code>tmux ls</code> 列出列出所有会话。</p>
-<p><code>tmux attach -t [id/name]</code> 进入会话。</p>
-<p><code>tmux kill-session -t [id/name]</code> 删除会话。</p>
-<h2 id="zellij">zellij</h2>
-<p>zellij 使用 rust 开发, 默认情况下进入 zellij 后快捷键都会在屏幕下方提示, 所以入门门槛比较低。</p>
-<p>直接 <code>zellij</code> 就可以进入 zellij, 使用 <code>ctrl-s d</code> 分离会话。</p>
-<p>在会话中 <code>ctrl-o w ctrl-r</code> 重命名会话。</p>
-<p><code>zellij ls</code> 列出所有会话。</p>
-<p><code>zellij a &lt;name&gt;</code> 进入会话。</p>
-<p><code>zellij d &lt;name&gt;</code> 删除会话。</p>
-]]></description>
-</item>
-<item>
-    <title>我的 Arch Linux 安装和基础配置过程</title>
-    <link>https://endless233333.github.io/archlinux_install_and_config/</link>
-    <pubDate>Wed, 14 Feb 2024 20:06:22 &#43;0800</pubDate>
-    <author>无止境</author>
-    <guid>https://endless233333.github.io/archlinux_install_and_config/</guid>
-    <description><![CDATA[<p>本文记录我的 Arch Linux 安装和基础配置的过程, 桌面为 xfce4, boot loader 为 systemd-boot, 文件系统为 ext4, intel cpu + 核显。</p>
-<h2 id="安装部分">安装部分</h2>
+    <guid>http://localhost:1313/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[<p>本文记录了我又双叒叕重装 archlinux 的过程和一些常用软件, 主要参考 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener noreffer ">ArchWiki</a> 和 <a href="https://arch.icekylin.online/" target="_blank" rel="noopener noreffer ">archlinux 简明指南</a>。</p>
+<h2 id="安装">安装</h2>
+<p>进入安装环境的过程略过。</p>
 <h3 id="联网">联网</h3>
-<p>有线网络能自动联网, 无线网络使用 <code>iwctl</code> 进行连接:</p>
+<p>有线网络一般能自动联网, 无线网络使用 <code>iwctl</code> 进行连接:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -75,7 +26,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">iwctl
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iwctl
 </span></span><span class="line"><span class="cl">device list
 </span></span><span class="line"><span class="cl">station wlan0 scan
 </span></span><span class="line"><span class="cl">station wlan0 get-networks
@@ -87,49 +38,20 @@
 <p>联网之后可以通过 <code>passwd</code> 设置安装环境中 root 的密码, 然后通过其他机器 ssh 去连, 方便复制粘贴。</p>
 <h3 id="更新系统时间">更新系统时间</h3>
 <p>使用 <code>timedatectl</code> 确保系统时间是准确的。</p>
-<h3 id="硬盘分区与格式">硬盘分区与格式</h3>
-<p>使用 <code>fdisk -l</code> 列出当前分区情况。</p>
-<p>分区步骤:</p>
+<h3 id="硬盘分区格式化挂载">硬盘分区、格式化、挂载</h3>
+<p>由于是重装, 所以硬盘不需要重新分区, 最终分区如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fdisk /dev/nvme0n1
-</span></span><span class="line"><span class="cl">n
-</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
-</span></span><span class="line"><span class="cl">+512M
-</span></span><span class="line"><span class="cl">n
-</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
-</span></span><span class="line"><span class="cl">+16G
-</span></span><span class="line"><span class="cl">n
-</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">(</span>enter<span class="o">)</span>
-</span></span><span class="line"><span class="cl">t
-</span></span><span class="line"><span class="cl"><span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="m">1</span>
-</span></span><span class="line"><span class="cl">t
-</span></span><span class="line"><span class="cl"><span class="m">2</span>
-</span></span><span class="line"><span class="cl"><span class="m">19</span>
-</span></span><span class="line"><span class="cl">w
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Device            Start        End    Sectors  Size Type
+</span></span><span class="line"><span class="cl">/dev/nvme0n1p1     2048    1050623    1048576  512M EFI System
+</span></span><span class="line"><span class="cl">/dev/nvme0n1p2  1050624   34605055   33554432   16G Linux swap
+</span></span><span class="line"><span class="cl">/dev/nvme0n1p3 34605056 1953523711 1918918656  915G Linux filesystem
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>格式化:</p>
@@ -140,13 +62,12 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkfs.ext4 /dev/nvme0n1p3
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkfs.ext4 /dev/nvme0n1p3
 </span></span><span class="line"><span class="cl">mkswap /dev/nvme0n1p2
 </span></span><span class="line"><span class="cl">mkfs.fat -F <span class="m">32</span> /dev/nvme0n1p1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="挂载">挂载</h3>
-<p>按如下顺序挂载:</p>
+</div><p>按如下顺序挂载:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -154,7 +75,7 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mount /dev/nvme0n1p3 /mnt
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mount /dev/nvme0n1p3 /mnt
 </span></span><span class="line"><span class="cl">mount --mkdir /dev/nvme0n1p1 /mnt/boot
 </span></span><span class="line"><span class="cl">swapon /dev/nvme0n1p2
 </span></span></code></pre></td></tr></table>
@@ -165,7 +86,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim vi sudo openssh zsh intel-ucode
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim sudo openssh zsh intel-ucode
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="生成-fstab-文件">生成 fstab 文件</h3>
@@ -174,7 +95,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">genfstab -U /mnt &gt; /mnt/etc/fstab
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">genfstab -U /mnt &gt; /mnt/etc/fstab
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="change-root">change root</h3>
@@ -185,7 +106,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="设置主机名">设置主机名</h3>
@@ -209,23 +130,30 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hwclock --systohc
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hwclock --systohc
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="设置-locale">设置 Locale</h3>
 <p>编辑 <code>/etc/locale.gen</code>, 去掉 <code>en_US.UTF-8 UTF-8</code> 和 <code>zh_CN.UTF-8 UTF-8</code> 前的井号。</p>
-<p>然后使用 <code>locale-gen</code> 生成 <code>locale</code>.</p>
+<p>然后使用 <code>locale-gen</code> 生成 locale.</p>
 <p><code>echo 'LANG=en_US.UTF-8'  &gt; /etc/locale.conf</code> 设定 LANG 变量。</p>
 <h3 id="设置-root-用户密码">设置 root 用户密码</h3>
-<p><code>passwd</code> 然后输两遍密码。</p>
-<h3 id="安装引导程序">安装引导程序</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装引导程序">安装引导程序</h3>
 <p>安装 <code>systemd-boot</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bootctl --path<span class="o">=</span>/boot install
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bootctl --path<span class="o">=</span>/boot install
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>编辑 <code>/boot/loader/loader.conf</code> 配置启动选单:</p>
@@ -261,14 +189,15 @@
 </span></span><span class="line"><span class="cl">options	root=UUID=... rw ibt=off nowatchdog
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="准备非-root-用户">准备非 root 用户</h3>
+</div><p><code>root=UUID=</code> 后接跟分区的 UUID.</p>
+<h3 id="准备非-root-用户">准备非 root 用户</h3>
 <p>创建用户:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">useradd -m -G wheel -s /bin/bash XXX
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">useradd -m -G wheel -s /bin/bash XXX
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>设置密码:</p>
@@ -277,7 +206,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">passwd XXX
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">passwd XXX
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>编辑 <code>sudoers</code>:</p>
@@ -298,7 +227,7 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">exit</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">exit</span>
 </span></span><span class="line"><span class="cl">umount -R /mnt
 </span></span><span class="line"><span class="cl">reboot
 </span></span></code></pre></td></tr></table>
@@ -310,7 +239,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now NetworkManager
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now NetworkManager
 </span></span><span class="line"><span class="cl">nmcli device wifi connect 名 password 密
 </span></span></code></pre></td></tr></table>
 </div>
@@ -321,24 +250,36 @@
 <h3 id="一大波安装">一大波安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pacman -S <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>xfce4 xfce4-goodies lightdm lightdm-gtk-greeter gvfs gvfs-mtp udiskie sof-firmware alsa-firmware alsa-ucm-conf pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth network-manager-applet nm-connection-editor <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>mesa lib32-mesa vulkan-intel lib32-vulkan-intel <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>blueman bluez bluez-utils <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-pinyin-zhwiki fcitx5-configtool <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>firefox chromium flameshot okular steam libreoffice-still libreoffice-still-zh-cn man-db man-pages syncthing fd fzf git
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># zsh 插件</span>
+</span></span><span class="line"><span class="cl">pacman -S zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl"><span class="c1"># xfce4 桌面相关</span>
+</span></span><span class="line"><span class="cl">pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter gvfs gvfs-mtp udiskie sof-firmware alsa-firmware alsa-ucm-conf pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth network-manager-applet nm-connection-editor
+</span></span><span class="line"><span class="cl"><span class="c1"># 字体</span>
+</span></span><span class="line"><span class="cl">pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+</span></span><span class="line"><span class="cl"><span class="c1"># intel 核显驱动</span>
+</span></span><span class="line"><span class="cl">pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
+</span></span><span class="line"><span class="cl"><span class="c1"># 蓝牙</span>
+</span></span><span class="line"><span class="cl">pacman -S blueman bluez bluez-utils
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入法</span>
+</span></span><span class="line"><span class="cl">pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-pinyin-zhwiki fcitx5-configtool
+</span></span><span class="line"><span class="cl"><span class="c1"># 常用软件</span>
+</span></span><span class="line"><span class="cl">pacman -S firefox  flameshot  man-db man-pages syncthing fd fzf git
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="yay-安装">yay 安装</h3>
@@ -351,7 +292,7 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://aur.archlinux.org/yay-bin.git
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://aur.archlinux.org/yay-bin.git
 </span></span><span class="line"><span class="cl">pacman -R yay-bin
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> yay-bin
 </span></span><span class="line"><span class="cl">makepkg -si
@@ -363,7 +304,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">yay -S yay-bin clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin zsh-theme-powerlevel10k
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin zsh-theme-powerlevel10k
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="启动一些服务">启动一些服务</h3>
@@ -372,11 +313,10 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> lightdm.service bluetooth.service systemd-boot-update.service
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> lightdm.service bluetooth.service systemd-boot-update.service
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="配置部分">配置部分</h2>
-<h3 id="fcitx5">fcitx5</h3>
+</div><h3 id="fcitx5-配置">fcitx5 配置</h3>
 <p>编辑 <code>/etc/environment</code> 加入以下内容:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -394,17 +334,10 @@
 </span></span><span class="line"><span class="cl">GLFW_IM_MODULE=ibus
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>fcitx5 设置:</p>
-<ul>
-<li>Input Method 加上 pinyin</li>
-<li>Addons -&gt; Classic User Interface -&gt; Theme -&gt; Material-Color-Red</li>
-</ul>
-<h3 id="firefox">firefox</h3>
-<p>地址栏输入 <code>about:config</code>, 然后将 <code>browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar</code> 改成 false.</p>
-<h3 id="libreoffice">libreoffice</h3>
-<p>tools -&gt; options -&gt; language settings -&gt; user interface 选中文</p>
-<h3 id="xfce4">xfce4</h3>
-<p>中文化, 在 ~/.xinitrc 或 ~/.xprofile 里加上：</p>
+</div><p>fcitx5 设置的 Input Method 加上 pinyin.</p>
+<h3 id="完成安装">完成安装</h3>
+<p>至此基本安装结束, 重启之后即可进入桌面环境。</p>
+<p>xfce4 中文化需要在 <code>~/.xprofile</code> 里加上：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -415,189 +348,93 @@
 </span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">LANGUAGE</span><span class="o">=</span><span class="n">zh_CN</span><span class="p">:</span><span class="n">en_US</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>xfce4 设置:
-Appearance</p>
+</div><h2 id="常用软件">常用软件</h2>
+<p>无需额外配置的软件直接在下面列出, 需要额外配置的在对应的标题下。</p>
+<p><strong>Packages</strong></p>
 <ul>
-<li>style: Adwaita-dark</li>
-<li>icons: elementary</li>
-<li>fonts:
+<li><code>aria2</code></li>
+<li><code>beebeep</code> 局域网通信</li>
+<li><code>bottom</code> 系统监控</li>
+<li><code>dbeaver</code> 数据库管理</li>
+<li><code>dosfstools</code> dosfat 文件系统工具</li>
+<li><code>fping</code> 向网络主机发送 ICMP ECHO_REQUEST</li>
+<li><code>geckodriver</code> firefox 驱动</li>
+<li><code>gimp</code> 绘图</li>
+<li><code>gucharmap</code> 字符查看</li>
+<li><code>hugo</code> 一个 cms</li>
+<li><code>inetutils</code> ftp, rlogin, rsh, telnet 客户端和服务端</li>
+<li><code>ipcalc</code> ip 计算器</li>
+<li><code>juk</code> 音乐播放器</li>
+<li><code>kdeconnect</code> 连手机</li>
+<li><code>mdcat</code> 终端看 markdown</li>
+<li><code>mtr</code> traceroute+ping</li>
+<li><code>neofetch</code> 看系统信息</li>
+<li><code>nmap</code></li>
+<li><code>obs-studio</code> 录屏</li>
+<li><code>p7zip</code> 7z</li>
+<li><code>php</code></li>
+<li><code>poke</code> 交互式二进制文件编辑器</li>
+<li><code>scrcpy</code> 连安卓手机</li>
+<li><code>tmux</code> 终端复用</li>
+<li><code>tree</code></li>
+<li><code>wget</code></li>
+<li><code>z</code> 智能跳转插件</li>
+<li><code>zellij</code> 终端复用</li>
+</ul>
+<p><strong>AUR</strong></p>
 <ul>
-<li>default font: IntelOne Mono Regular</li>
-<li>dpi: 120</li>
+<li><code>bruno-bin</code> 接口测试工具</li>
+<li><code>drawio-desktop-bin</code> 绘图</li>
+<li><code>fluent-reader-bin</code> rss 客户端</li>
+<li><code>goldendict-ng</code> 字典</li>
+<li><code>mycli</code> mysql 客户端</li>
+<li><code>python-selenium</code> 网页自动化操作</li>
+<li><code>toolong</code> 查看特别长的文件</li>
 </ul>
-</li>
-</ul>
-<p>Desktop
-桌面
-icon: default icon 去掉前三个</p>
-<p>Panel</p>
-<ul>
-<li>panel1-items
-<ul>
-<li>whisker menu
-<ul>
-<li>commands 勾上 restart, shut down, suspend</li>
-</ul>
-</li>
-<li>window buttons</li>
-<li>separator</li>
-<li>network monitor
-<ul>
-<li>update interval: 0.5</li>
-<li>show values as bits</li>
-<li>present data as: Bars and values</li>
-</ul>
-</li>
-<li>system load monitor
-<ul>
-<li>update interval: 1000</li>
-<li>只留下 cpu 和 mem</li>
-</ul>
-</li>
-<li>mount devices</li>
-<li>separator</li>
-<li>stautus tray plugin</li>
-<li>pulseaudio plugin</li>
-<li>notification plugin</li>
-<li>separator</li>
-<li>clock
-<ul>
-<li>clock option:</li>
-<li>layout: date only</li>
-<li>font: 12</li>
-<li>format: custom format %m-%d</li>
-</ul>
-</li>
-<li>clock
-<ul>
-<li>clock option:</li>
-<li>layout: time only</li>
-<li>font: 16</li>
-<li>format: 14:38</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>panel2-items
-<ul>
-<li>前两个 launcher 上移一个，中间加各种 launcher</li>
-</ul>
-</li>
-</ul>
-<p>Window Manager</p>
-<ul>
-<li>keyboard
-<ul>
-<li>Window operations menu 改成 super+space</li>
-<li>改下 tile window to the &hellip;</li>
-</ul>
-</li>
-</ul>
-<p>Xfce Screensaver</p>
-<ul>
-<li>时间改成 60</li>
-</ul>
-<p>Terminal</p>
-<ul>
-<li>Appearance
-<ul>
-<li>字体: IntelOne Mono Regular 14</li>
-<li>background: Transparent Background 0.9</li>
-</ul>
-</li>
-<li>Colors
-<ul>
-<li>Background Color: 黑色上面那个</li>
-</ul>
-</li>
-</ul>
-<p>Keyboard</p>
-<ul>
-<li>Application Shortcuts
-<ul>
-<li>xflock4 super+l</li>
-<li>flameshot gui shift+super+s</li>
-<li>xfce4-appfinder 改成 alt+space</li>
-</ul>
-</li>
-</ul>
-<p>Power Manager</p>
-<ul>
-<li>General
-<ul>
-<li>when power button is pressed: Ask</li>
-</ul>
-</li>
-<li>Display
-<ul>
-<li>连接电源时拉满</li>
-</ul>
-</li>
-</ul>
-<p>Session and Startup</p>
-<ul>
-<li>Application Autostart
-<ul>
-<li>打开 Clipman</li>
-<li>添加 thunar 命令是 thunar &ndash;daemon</li>
-</ul>
-</li>
-</ul>
-]]></description>
-</item>
-<item>
-    <title>通过 python -m 直接在命令行中使用 python 模块以实现一些有用的功能</title>
-    <link>https://endless233333.github.io/python_cli/</link>
-    <pubDate>Sat, 06 Jan 2024 23:14:42 &#43;0800</pubDate>
-    <author>无止境</author>
-    <guid>https://endless233333.github.io/python_cli/</guid>
-    <description><![CDATA[<p>在过去, 我经常使用 <code>python -m http.server</code> 用来在局域网中给别人分享一些文件, 所以我打算去翻翻自己电脑上安装的各种 python 包, 找一找能直接通过 <code>python -m</code> 使用的有用的模块。</p>
-<h2 id="python--m">python -m</h2>
-<p>在 <a href="https://docs.python.org/3/using/cmdline.html#cmdoption-m" target="_blank" rel="noopener noreffer ">python 的文档</a>中可以看到, <code>python -m  &lt;module-name&gt;</code> 会在 sys.path 中搜索指定模块, 并以 <code>__main__</code> 模块执行其内容。</p>
-<p>以 <code>__main__</code> 模块执行其内容有两种情况:</p>
-<ul>
-<li>如果是单独的 py 文件, 可以通过 <code>__name__ == '__main__'</code>, 一般是 <code>if __name__ == '__main__':</code></li>
-<li>如果是一个包, 执行其下的 <code>__main__.py</code></li>
-</ul>
-<p>因此只需要在 sys.path 中找到包含 <code>__main__.py</code> 这个文件的目录或者内容中有 <code>if __name__ == '__main__':</code> 的文件即可。</p>
-<h2 id="寻找">寻找</h2>
-<p>我电脑上的 python 包都在 /usr/lib/python3.11, cd 到此目录。</p>
-<p>使用 <code>find . -name &quot;__main__.py&quot;</code> 寻找 <code>__main__.py</code>.</p>
-<p>使用 <code>rg -l &quot;if __name__ == '__main__':&quot; | sort</code> 寻找内容中有 <code>if __name__ == '__main__':</code> 的文件。</p>
-<h2 id="筛选与使用">筛选与使用</h2>
-<p>/usr/lib/python3.11 下的 site-packages 存放第三方模块。</p>
-<p><strong>一般可以通过 <code>python -m xxx -h</code> 或 <code>python -m xxx --help</code> 获取帮助信息。</strong></p>
-<h3 id="标准库">标准库</h3>
-<h4 id="ast">ast</h4>
-<p>解析源代码成抽象语法树, 例如:</p>
+<h3 id="docker">docker</h3>
+<p><code>sudo pacman -S docker</code></p>
+<p>加入到 docker 组: <code>sudo usermod -aG docker $USER</code></p>
+<p>使用前需启动 docker 服务。</p>
+<h3 id="java">java</h3>
+<p><code>sudo pacman -S jdk-openjdk jdk17-openjdk jdk11-openjdk jdk8-openjdk</code></p>
+<p>使用 <code>archlinux-java</code> 切换 java 环境。</p>
+<h3 id="thunderbird">thunderbird</h3>
+<p>雷鸟邮件客户端。</p>
+<p><code>sudo pacman -S thunderbird thunderbird-i18n-zh-cn systray-x-common</code></p>
+<p>qq 邮箱导入时密码要使用授权码。</p>
+<h3 id="tldr">tldr</h3>
+<p><code>sudo pacman -S tldr</code></p>
+<p>使用之前更新以下: <code>tldr --update</code></p>
+<h3 id="tlp">tlp</h3>
+<p>tlp 电源管理</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; echo &#34;print(&#39;hello&#39;)&#34; | python -m ast
-</span></span><span class="line"><span class="cl">Module(
-</span></span><span class="line"><span class="cl">   body=[
-</span></span><span class="line"><span class="cl">      Expr(
-</span></span><span class="line"><span class="cl">         value=Call(
-</span></span><span class="line"><span class="cl">            func=Name(id=&#39;print&#39;, ctx=Load()),
-</span></span><span class="line"><span class="cl">            args=[
-</span></span><span class="line"><span class="cl">               Constant(value=&#39;hello&#39;)],
-</span></span><span class="line"><span class="cl">            keywords=[]))],
-</span></span><span class="line"><span class="cl">   type_ignores=[])
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman -S tlp tlp-rdw
+</span></span><span class="line"><span class="cl">yay -S tlpui
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> tlp.service
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> NetworkManager-dispatcher.service
+</span></span><span class="line"><span class="cl">sudo systemctl mask systemd-rfkill.service
+</span></span><span class="line"><span class="cl">sudo systemctl mask systemd-rfkill.socket
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="base64">base64</h4>
-<p>用于 base64 编解码, 例如:</p>
+</div><h3 id="wireshark">wireshark</h3>
+<p><code>sudo pacman -S wireshark-qt</code></p>
+<p>加入到 wireshark 组: <code>sudo usermod -aG wireshark $USER</code></p>
+<h3 id="虚拟机">虚拟机</h3>
+<h4 id="virtualbox">virtualbox</h4>
+<p><code>sudo pacman -S virtualbox virtualbox-guest-iso</code> 选择 virtualbox-host-modules-arch</p>
+<p>virtualbox-guest-iso 在 <code>/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso</code></p>
+<p>加载模块: <code>sudo modprobe vboxdrv vboxnetadp vboxnetflt</code></p>
+<p>加入到 vboxusers 组: <code>sudo usermod -aG vboxusers $USER</code></p>
+<h4 id="vmware">vmware</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -607,227 +444,21 @@ icon: default icon 去掉前三个</p>
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; echo -n &#34;hello&#34; | python -m base64
-</span></span><span class="line"><span class="cl">aGVsbG8=
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">&gt; echo -n &#34;aGVsbG8=&#34; | python -m base64 -d
-</span></span><span class="line"><span class="cl">hello%
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman -S linux-headers
+</span></span><span class="line"><span class="cl">yay vmware-workstation
+</span></span><span class="line"><span class="cl">sudo systemctl start vmware-networks-configuration.service
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> vmware-networks.service vmware-usbarbitrator.service
+</span></span><span class="line"><span class="cl">sudo modprobe -a vmw_vmci vmmon
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>由于 coreutils 里就有 base64, 所以直接在命令行使用这个模块意义不大。</p>
-<h4 id="compileall">compileall</h4>
-<p>可以将 .py 编译为 .pyc, 例如: <code>python -m compileall .</code>.</p>
-<p>默认 .pyc 会放在 <code>__pycache__</code> 目录下。</p>
-<h4 id="cprofile">cProfile</h4>
-<p>性能分析, 例如: <code>python -m cProfile -m base64 ./1.txt</code>.</p>
-<h4 id="curses">curses</h4>
-<p>用于创建 TUI 的模块。</p>
-<p><code>python -m curses.has_key</code> 检查 has_key.</p>
-<p><code>python -m curses.textpad</code> 打开一个简单的写字板。</p>
-<h4 id="ensurepip">ensurepip</h4>
-<p>用于确保安装了 pip, 没什么用。</p>
-<h4 id="gzip">gzip</h4>
-<p>例如: <code>python -m gzip --best ./test.mp4</code></p>
-<h4 id="httpserver">http.server</h4>
-<p>起一个简单的 http 服务。</p>
-<h4 id="imghdr">imghdr</h4>
-<p>确认图像类型, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m imghdr ./Pictures/7.png
-</span></span><span class="line"><span class="cl">./Pictures/7.png: png
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="jsontool">json.tool</h4>
-<p>校验并打印好看的 json, 例如: <code>python -m json.tool ~/data.json</code>.</p>
-<h4 id="lib2to3">lib2to3</h4>
-<p>用于将 python2 代码转化成 python3 代码, 可以直接 <code>2to3</code> 而不用 <code>python -m lib2to3</code>, 也没什么用。</p>
-<h4 id="mimetypes">mimetypes</h4>
-<p>显示文件的 mime 类型, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m mimetypes 1.sh
-</span></span><span class="line"><span class="cl">type: application/x-sh encoding: None
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="pdb">pdb</h4>
-<p>python debugger, 用法: <code>python -m pdb your_script.py</code>.</p>
-<h4 id="platform">platform</h4>
-<p>获取平台信息:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m platform
-</span></span><span class="line"><span class="cl">Linux-6.6.9-arch1-1-x86_64-with-glibc2.38
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="profile">profile</h4>
-<p>性能分析, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m profile 1.py
-</span></span><span class="line"><span class="cl">hello
-</span></span><span class="line"><span class="cl">         5 function calls in 0.013 seconds
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   Ordered by: standard name
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 1.py:1(&lt;module&gt;)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 :0(exec)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 :0(print)
-</span></span><span class="line"><span class="cl">        1    0.013    0.013    0.013    0.013 :0(setprofile)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.013    0.013 profile:0(&lt;code object &lt;module&gt; at 0x7f373a01e5d0, file &#34;1.py&#34;, line 1&gt;)
-</span></span><span class="line"><span class="cl">        0    0.000             0.000          profile:0(profiler)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>选项 <code>-o</code> 可以保存分析结果到指定文件。</p>
-<h4 id="pstats">pstats</h4>
-<p>处理和显示 profile 的结果, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m pstats test
-</span></span><span class="line"><span class="cl">Welcome to the profile statistics browser.
-</span></span><span class="line"><span class="cl">test%
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="pydoc">pydoc</h4>
-<p>python 文档工具。</p>
-<h4 id="quopri">quopri</h4>
-<p><code>python -m quopri xxx</code> 对 xxx 进行 Quoted-Printable 编码, 选项 -d 解码。</p>
-<h4 id="random">random</h4>
-<p><code>python -m random</code> 测试产生随机数。</p>
-<h4 id="shlex">shlex</h4>
-<p>分词, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; echo -n &#34;print(&#39;hello&#39;)&#34; | python -m shlex
-</span></span><span class="line"><span class="cl">Token: &#39;print&#39;
-</span></span><span class="line"><span class="cl">Token: &#39;(&#39;
-</span></span><span class="line"><span class="cl">Token: &#34;&#39;hello&#39;&#34;
-</span></span><span class="line"><span class="cl">Token: &#39;)&#39;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="site">site</h4>
-<p><code>python -m site</code> 打印 sys.path 等信息。</p>
-<h4 id="sysconfig">sysconfig</h4>
-<p><code>python -m sysconfig</code> 打印配置信息。</p>
-<h4 id="tabnanny">tabnanny</h4>
-<p>检查缩进, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; python -m tabnanny -v 1.py
-</span></span><span class="line"><span class="cl">&#39;1.py&#39;: Clean bill of health.
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="tarfile">tarfile</h4>
-<p>创建和解压 tar 文件, 例如:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; touch 1
-</span></span><span class="line"><span class="cl">&gt; ls
-</span></span><span class="line"><span class="cl">1
-</span></span><span class="line"><span class="cl">&gt; python -m tarfile -c 1.tar ./1
-</span></span><span class="line"><span class="cl">&gt; ls
-</span></span><span class="line"><span class="cl">1  1.tar
-</span></span><span class="line"><span class="cl">&gt; python -m tarfile -l 1.tar
-</span></span><span class="line"><span class="cl">./1
-</span></span><span class="line"><span class="cl">&gt; python -m tarfile -t 1.tar
-</span></span><span class="line"><span class="cl">[&lt;TarInfo &#39;./1&#39; at 0x7f9cc5ae5cc0&gt;]
-</span></span><span class="line"><span class="cl">&gt; rm 1
-</span></span><span class="line"><span class="cl">&gt; ls
-</span></span><span class="line"><span class="cl">1.tar
-</span></span><span class="line"><span class="cl">&gt; python -m tarfile -e 1.tar
-</span></span><span class="line"><span class="cl">&gt; ls
-</span></span><span class="line"><span class="cl">1  1.tar
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="tkinter">tkinter</h4>
-<p>用于创建 GUI 的模块, 直接 <code>python -m tkinter</code> 的话会有一个简单的小窗口。</p>
-<h4 id="turtledemo">turtledemo</h4>
-<p>正如它的名字一样, 直接使用会出现 turtle 的 demo.</p>
-<h4 id="unittest">unittest</h4>
-<p>用于在命令行中直接运行单元测试。</p>
-<h4 id="uu">uu</h4>
-<p>进行 uu 编码和解码。</p>
-<h4 id="venv">venv</h4>
-<p>创建虚拟环境: <code>python -m venv aaa</code>
-激活虚拟环境: <code>source aaa/bin/activate</code>
-退除虚拟环境: <code>deactivate</code></p>
-<h4 id="xmlrpcserver">xmlrpc.server</h4>
-<p><code>python -m xmlrpc.server</code> 起一个简单的 xmlrpc 服务。</p>
-<h4 id="zipapp">zipapp</h4>
-<p>创建和执行 pyz.</p>
-<p>创建: <code>python -m zipapp -o 1.pyz -m &quot;myapp:main&quot; ./app</code></p>
-<p>执行: <code>python 1.pyz</code></p>
-<p>在已存在 <code>__main__.py</code> 的目录中不可以使用 <code>-m</code> 选项指定入口点。</p>
-]]></description>
+</div>]]></description>
 </item>
 <item>
     <title>zsh 提示符</title>
-    <link>https://endless233333.github.io/zsh_prompt/</link>
+    <link>http://localhost:1313/zsh_prompt/</link>
     <pubDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</pubDate>
     <author>无止境</author>
-    <guid>https://endless233333.github.io/zsh_prompt/</guid>
+    <guid>http://localhost:1313/zsh_prompt/</guid>
     <description><![CDATA[<p>在 <a href="https://man.archlinux.org/man/zshparam.1" target="_blank" rel="noopener noreffer ">zshparam(1)</a> 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。</p>
 <h2 id="zsh-prompt-转义字符">zsh PROMPT 转义字符</h2>
 <p>zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 <a href="https://man.archlinux.org/man/zshmisc.1" target="_blank" rel="noopener noreffer ">zshmisc(1)</a>。</p>
