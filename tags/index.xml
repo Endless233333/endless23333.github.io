@@ -1,14 +1,30 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - Tag - 无止境的博客</title>
-        <link>http://localhost:1313/tags/</link>
+        <link>https://endless233333.github.io/tags/</link>
         <description>Tags - Tag - 无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 28 May 2024 08:17:00 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux</title>
+    <link>https://endless233333.github.io/tags/linux/</link>
+    <pubDate>Tue, 28 May 2024 08:17:00 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/tags/linux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Archlinux</title>
+    <link>https://endless233333.github.io/tags/archlinux/</link>
+    <pubDate>Sat, 18 May 2024 22:37:29 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/tags/archlinux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Zsh</title>
-    <link>http://localhost:1313/tags/zsh/</link>
+    <link>https://endless233333.github.io/tags/zsh/</link>
     <pubDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</pubDate>
     <author>无止境</author>
-    <guid>http://localhost:1313/tags/zsh/</guid>
+    <guid>https://endless233333.github.io/tags/zsh/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

@@ -224,7 +224,7 @@ export LANGUAGE=zh_CN:en_US
 - `bottom` 系统监控
 - `dbeaver` 数据库管理
 - `dosfstools` dosfat 文件系统工具
-- `fping` 向网络主机发送 ICMP ECHO_REQUEST
+- `fping` ping 多个主机
 - `geckodriver` firefox 驱动
 - `gimp` 绘图
 - `gucharmap` 字符查看
@@ -253,6 +253,7 @@ export LANGUAGE=zh_CN:en_US
 - `drawio-desktop-bin` 绘图
 - `fluent-reader-bin` rss 客户端
 - `goldendict-ng` 字典
+- `localsend-bin` 局域网传文件
 - `mycli` mysql 客户端
 - `python-selenium` 网页自动化操作
 - `toolong` 查看特别长的文件

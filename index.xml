@@ -1,16 +1,94 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>无止境的博客</title>
-        <link>http://localhost:1313/</link>
+        <link>https://endless233333.github.io/</link>
         <description>无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 18 May 2024 22:37:29 &#43;0800</lastBuildDate>
-            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 28 May 2024 08:17:00 &#43;0800</lastBuildDate>
+            <atom:link href="https://endless233333.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Linux 上的访问控制列表</title>
+    <link>https://endless233333.github.io/linux_%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8/</link>
+    <pubDate>Tue, 28 May 2024 08:17:00 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/linux_%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8/</guid>
+    <description><![CDATA[<p>Linux 上的访问控制列表 (acl, access control list) 为文件系统提供了一种额外的、更灵活的权限机制。相比于使用 chmod 修改文件的模式比特位以进行访问控制, acl 可以指定具体的某个用户或者某个组对文件的访问权限。</p>
+<h2 id="安装和启用-acl">安装和启用 acl</h2>
+<p>在 Archlinux 和 CentOS 中 acl 包是默认安装的, Debian 中需要: <code>sudo apt install acl</code>.</p>
+<p>acl 包中的 <code>getfacl</code>:用于显示文件的 acl, <code>setfacl</code>:用于设置文件的 acl.</p>
+<p>在大部分的文件系统中(ext2/3/4, xfs, btrfs&hellip;), acl 都是默认启用的。</p>
+<p>如果当前系统系统未启用 acl, 除了使用对应的文件系统管理工具设置 acl 参数外, 还可以在 <code>/etc/fstab</code>:挂载选项中加上 acl 参数, 例如: <code>UUID=...   /   ext4    rw,relatime,acl	0 1</code>.</p>
+<h2 id="acl-的使用">acl 的使用</h2>
+<h3 id="getfacl-显示-acl">getfacl 显示 acl</h3>
+<p><code>getfacl [-aceEsRLPtpndvh] file ...</code></p>
+<ul>
+<li><code>-a, --access</code>: 仅显示文件的访问控制列表</li>
+<li><code>-d, --default</code>: 仅显示默认的访问控制列表</li>
+<li><code>-c, --omit-header</code>: 不现实头部注释</li>
+<li><code>-e, --all-effective</code>: 打印所有有效全线</li>
+<li><code>-E, --no-effective</code>: 打印无效权限</li>
+<li><code>-s, --skip-base</code>: 跳过仅有基本项的文件</li>
+<li><code>-R, --recursive</code>: 递归</li>
+<li><code>-L, --logical</code>: 跟踪符号链接</li>
+<li><code>-P, --physical</code>: 不跟踪符号链接</li>
+<li><code>-t, --tabular</code>: 使用表格的形式打印</li>
+<li><code>-n, --numeric</code>: 打印用户/组标识符</li>
+<li><code>--one-file-system</code>: 跳过不同文件系统的文件</li>
+<li><code>-p, --absolute-names</code>: 不去除路径名中前导的&rsquo;/'</li>
+<li><code>-v, --version</code>: 版本</li>
+<li><code>-h, --help</code>: 帮助</li>
+</ul>
+<p>一般只需要 <code>getfacl file</code> 显示 acl, 若要查看目录中所有文件的 acl 可以使用 <code>getfacl -Rs dir</code>.</p>
+<p>acl 中的基本条目与 ugo/rwx 相对应, 不可删除, 形如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user::rw-
+</span></span><span class="line"><span class="cl">group::r--
+</span></span><span class="line"><span class="cl">other::r--
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="setfacl-设置-acl">setfacl 设置 acl</h3>
+<p><code>setfacl [-bkndRLP] { -m|-M|-x|-X ... } file ...</code></p>
+<ul>
+<li><code>-m, --modify=acl</code>: 修改文件当前的 acl 条目</li>
+<li><code>-M, --modify-file=file</code>: 从文件中读取要修改的 acl 条目</li>
+<li><code>-x, --remove=acl</code>: 删除文件指定的 acl 条目</li>
+<li><code>-X, --remove-file=file</code>: 从文件中读取要删除的 acl 条目</li>
+<li><code>-b, --remove-all</code>: 删除所有扩展的 acl 条目</li>
+<li><code>-k, --remove-default</code>: 删除默认的 acl</li>
+<li><code>--set=acl</code>: 设置并替换文件的 acl, 替换当前的 acl</li>
+<li><code>--set-file=file</code>: 从文件中读取要设置的 acl 条目</li>
+<li><code>--mask</code>: 请重新计算有效的权限掩码</li>
+<li><code>-n, --no-mask</code>: 不要重新计算有效的权限掩码</li>
+<li><code>-d, --default</code>: 操作应用于默认 acl</li>
+<li><code>-R, --recursive</code>: 递归</li>
+<li><code>-L, --logical</code>: 跟踪符号链接</li>
+<li><code>-P, --physical</code>: 不跟踪符号链接</li>
+<li><code>--restore=file</code>: 恢复 acl (与 &ldquo;getfacl-R&rdquo; 相反)</li>
+<li><code>--test</code>: 测试模式 (不修改 acl)</li>
+<li><code>-v, --version</code>: 版本</li>
+<li><code>-h, --help</code>: 帮助</li>
+</ul>
+<p>为用户设置 acl: <code>setfacl -m &quot;u:user:permissions&quot; &lt;file/dir&gt;</code></p>
+<p>为组设置 acl: <code>setfacl -m &quot;g:group:permissions&quot; &lt;file/dir&gt;</code></p>
+<p>为其他人设置 acl: <code>setfacl -m &quot;other:permissions&quot; &lt;file/dir&gt;</code></p>
+<p>其中 user/group 可以是用户名/组名或 ID, permissions 是形如 <code>r-x</code> 的权限。</p>
+<p>整个形如 <code>&quot;u:user:permissions&quot;</code> 称为一个条目 (entry).</p>
+<p>为指定目录下的新创建的文件或目录设置默认的条目: <code>setfacl -dm &quot;entry&quot; &lt;dir&gt;</code>, 默认的条目不会影响移动到目录中的文件。</p>
+<p>删除默认条目: <code>setfacl -k &lt;file/dir&gt;</code>.</p>
+<p>删除所有扩展的条目: <code>setfacl -b &lt;file/dir&gt;</code>.</p>
+]]></description>
+</item>
+<item>
     <title>Archlinux 安装记录与常用软件</title>
-    <link>http://localhost:1313/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+    <link>https://endless233333.github.io/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
     <pubDate>Sat, 18 May 2024 22:37:29 &#43;0800</pubDate>
     <author>无止境</author>
-    <guid>http://localhost:1313/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+    <guid>https://endless233333.github.io/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
     <description><![CDATA[<p>本文记录了我又双叒叕重装 archlinux 的过程和一些常用软件, 主要参考 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener noreffer ">ArchWiki</a> 和 <a href="https://arch.icekylin.online/" target="_blank" rel="noopener noreffer ">archlinux 简明指南</a>。</p>
 <h2 id="安装">安装</h2>
 <p>进入安装环境的过程略过。</p>
@@ -357,7 +435,7 @@
 <li><code>bottom</code> 系统监控</li>
 <li><code>dbeaver</code> 数据库管理</li>
 <li><code>dosfstools</code> dosfat 文件系统工具</li>
-<li><code>fping</code> 向网络主机发送 ICMP ECHO_REQUEST</li>
+<li><code>fping</code> ping 多个主机</li>
 <li><code>geckodriver</code> firefox 驱动</li>
 <li><code>gimp</code> 绘图</li>
 <li><code>gucharmap</code> 字符查看</li>
@@ -387,6 +465,7 @@
 <li><code>drawio-desktop-bin</code> 绘图</li>
 <li><code>fluent-reader-bin</code> rss 客户端</li>
 <li><code>goldendict-ng</code> 字典</li>
+<li><code>localsend-bin</code> 局域网传文件</li>
 <li><code>mycli</code> mysql 客户端</li>
 <li><code>python-selenium</code> 网页自动化操作</li>
 <li><code>toolong</code> 查看特别长的文件</li>
@@ -455,10 +534,10 @@
 </item>
 <item>
     <title>zsh 提示符</title>
-    <link>http://localhost:1313/zsh_prompt/</link>
+    <link>https://endless233333.github.io/zsh_prompt/</link>
     <pubDate>Fri, 05 Jan 2024 17:04:08 &#43;0800</pubDate>
     <author>无止境</author>
-    <guid>http://localhost:1313/zsh_prompt/</guid>
+    <guid>https://endless233333.github.io/zsh_prompt/</guid>
     <description><![CDATA[<p>在 <a href="https://man.archlinux.org/man/zshparam.1" target="_blank" rel="noopener noreffer ">zshparam(1)</a> 中可以看到 zsh 的各种提示符可以通过修改 PROMPT, PROMPT2, PROMPT3, PROMPT4, RPROMPT 等变量的值进行设置, 它们的基本语法相同, 其中 PROMPT 是主要的提示符, 本文也以它为例。</p>
 <h2 id="zsh-prompt-转义字符">zsh PROMPT 转义字符</h2>
 <p>zshparam(1) 中关于 PS1 的说明 (zsh 中 PROMPT, prompt, PS1 等价) 指向了 <a href="https://man.archlinux.org/man/zshmisc.1" target="_blank" rel="noopener noreffer ">zshmisc(1)</a>。</p>
