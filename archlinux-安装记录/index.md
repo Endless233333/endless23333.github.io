@@ -186,7 +186,7 @@ makepkg -si
 
 常用软件:
 ```bash
-yay -S clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin zsh-theme-powerlevel10k
+yay -S clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin
 ```
 
 ### 启动一些服务
@@ -222,17 +222,21 @@ export LANGUAGE=zh_CN:en_US
 - `aria2`
 - `beebeep` 局域网通信
 - `bottom` 系统监控
+- `chromium`
 - `dbeaver` 数据库管理
 - `dosfstools` dosfat 文件系统工具
 - `fping` ping 多个主机
 - `geckodriver` firefox 驱动
 - `gimp` 绘图
+- `gnome-keyring`
 - `gucharmap` 字符查看
 - `hugo` 一个 cms
 - `inetutils` ftp, rlogin, rsh, telnet 客户端和服务端
 - `ipcalc` ip 计算器
 - `juk` 音乐播放器
 - `kdeconnect` 连手机
+- `libreoffice-still`
+- `libreoffice-still-zh-cn`
 - `mdcat` 终端看 markdown
 - `mtr` traceroute+ping
 - `neofetch` 看系统信息
@@ -252,7 +256,6 @@ export LANGUAGE=zh_CN:en_US
 - `bruno-bin` 接口测试工具
 - `drawio-desktop-bin` 绘图
 - `fluent-reader-bin` rss 客户端
-- `goldendict-ng` 字典
 - `localsend-bin` 局域网传文件
 - `mycli` mysql 客户端
 - `python-selenium` 网页自动化操作

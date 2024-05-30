@@ -302,7 +302,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin zsh-theme-powerlevel10k
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S clash-verge-rev-bin ttf-intel-one-mono visual-studio-code-bin
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="启动一些服务">启动一些服务</h3>
@@ -353,17 +353,21 @@
 <li><code>aria2</code></li>
 <li><code>beebeep</code> 局域网通信</li>
 <li><code>bottom</code> 系统监控</li>
+<li><code>chromium</code></li>
 <li><code>dbeaver</code> 数据库管理</li>
 <li><code>dosfstools</code> dosfat 文件系统工具</li>
 <li><code>fping</code> ping 多个主机</li>
 <li><code>geckodriver</code> firefox 驱动</li>
 <li><code>gimp</code> 绘图</li>
+<li><code>gnome-keyring</code></li>
 <li><code>gucharmap</code> 字符查看</li>
 <li><code>hugo</code> 一个 cms</li>
 <li><code>inetutils</code> ftp, rlogin, rsh, telnet 客户端和服务端</li>
 <li><code>ipcalc</code> ip 计算器</li>
 <li><code>juk</code> 音乐播放器</li>
 <li><code>kdeconnect</code> 连手机</li>
+<li><code>libreoffice-still</code></li>
+<li><code>libreoffice-still-zh-cn</code></li>
 <li><code>mdcat</code> 终端看 markdown</li>
 <li><code>mtr</code> traceroute+ping</li>
 <li><code>neofetch</code> 看系统信息</li>
@@ -384,7 +388,6 @@
 <li><code>bruno-bin</code> 接口测试工具</li>
 <li><code>drawio-desktop-bin</code> 绘图</li>
 <li><code>fluent-reader-bin</code> rss 客户端</li>
-<li><code>goldendict-ng</code> 字典</li>
 <li><code>localsend-bin</code> 局域网传文件</li>
 <li><code>mycli</code> mysql 客户端</li>
 <li><code>python-selenium</code> 网页自动化操作</li>
