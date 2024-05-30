@@ -4,6 +4,50 @@
         <link>https://endless233333.github.io/posts/</link>
         <description>All Posts | 无止境的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 29 May 2024 16:38:57 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>为 Docker Pull 设置代理服务器</title>
+    <link>https://endless233333.github.io/%E4%B8%BA-docker-pull-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Wed, 29 May 2024 16:38:57 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/%E4%B8%BA-docker-pull-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <description><![CDATA[<p>在使用 <code>docker pull</code> 下载镜像时, 有时会遇到下载很慢的情况, 除了设置其他的镜像源外, 还可以使用代理的方式。但是在使用过程中发现 <code>docker pull</code> 时并不经过系统代理或其他常见设置下指定的代理服务器, 在参考了 <a href="https://docs.docker.com/config/daemon/systemd/" target="_blank" rel="noopener noreffer ">Configure the daemon with systemd</a> 后得到以下两种解决办法。</p>
+<h2 id="dockerservice">docker.service</h2>
+<p>使用 <code>sudo vim /usr/lib/systemd/system/docker.service</code> 或者 <code>sudo systemctl edit docker.service</code> 编辑 <code>docker.service</code> 在 <code>[Service]</code> 下加入以下内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Environment=&#34;HTTP_PROXY=http://127.0.0.1:12345&#34;
+</span></span><span class="line"><span class="cl">Environment=&#34;HTTPS_PROXY=http://127.0.0.1:12345&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后使用 <code>sudo systemctl restart docker</code> 重启 docker 即可。</p>
+<p>注意在使用 <code>systemctl edit</code> 时, 原有的内容前会被加上井号, 不用在意, 新加的内容不需要加井号。</p>
+<h2 id="daemonjson">daemon.json</h2>
+<p>在 <code>/etc/docker/daemon.json</code> 中写入以下内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;proxies&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;http-proxy&#34;: &#34;http://127.0.0.1:12345&#34;,
+</span></span><span class="line"><span class="cl">    &#34;https-proxy&#34;: &#34;http://127.0.0.1:12345&#34;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后使用 <code>sudo systemctl restart docker</code> 重启 docker 即可。</p>
+]]></description>
+</item>
+<item>
     <title>Linux 上的访问控制列表</title>
     <link>https://endless233333.github.io/linux_%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8/</link>
     <pubDate>Tue, 28 May 2024 08:17:00 &#43;0800</pubDate>
