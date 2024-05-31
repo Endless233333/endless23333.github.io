@@ -3,12 +3,28 @@
         <title>Tags - Tag - 无止境的博客</title>
         <link>https://endless233333.github.io/tags/</link>
         <description>Tags - Tag - 无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 29 May 2024 16:38:57 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 May 2024 13:55:07 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Archlinux</title>
+    <link>https://endless233333.github.io/tags/archlinux/</link>
+    <pubDate>Fri, 31 May 2024 13:55:07 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/tags/archlinux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Docker</title>
     <link>https://endless233333.github.io/tags/docker/</link>
-    <pubDate>Wed, 29 May 2024 16:38:57 &#43;0800</pubDate>
+    <pubDate>Fri, 31 May 2024 13:55:07 &#43;0800</pubDate>
     <author>无止境</author>
     <guid>https://endless233333.github.io/tags/docker/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Game</title>
+    <link>https://endless233333.github.io/tags/game/</link>
+    <pubDate>Fri, 31 May 2024 13:55:07 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/tags/game/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -17,14 +33,6 @@
     <pubDate>Tue, 28 May 2024 08:17:00 &#43;0800</pubDate>
     <author>无止境</author>
     <guid>https://endless233333.github.io/tags/linux/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Archlinux</title>
-    <link>https://endless233333.github.io/tags/archlinux/</link>
-    <pubDate>Sat, 18 May 2024 22:37:29 &#43;0800</pubDate>
-    <author>无止境</author>
-    <guid>https://endless233333.github.io/tags/archlinux/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>

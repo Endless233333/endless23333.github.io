@@ -3,7 +3,122 @@
         <title>Archlinux - Tag - 无止境的博客</title>
         <link>https://endless233333.github.io/tags/archlinux/</link>
         <description>Archlinux - Tag - 无止境的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 18 May 2024 22:37:29 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/archlinux/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 May 2024 13:55:07 &#43;0800</lastBuildDate><atom:link href="https://endless233333.github.io/tags/archlinux/" rel="self" type="application/rss+xml" /><item>
+    <title>在 Archlinux 上通过 ReDroid 容器运行明日方舟并使用 MAA 自动刷图</title>
+    <link>https://endless233333.github.io/archlinux-arknights-maa/</link>
+    <pubDate>Fri, 31 May 2024 13:55:07 &#43;0800</pubDate>
+    <author>无止境</author>
+    <guid>https://endless233333.github.io/archlinux-arknights-maa/</guid>
+    <description><![CDATA[<p>本文记录了我在我的 Archlinux 上通过 ReDroid 容器运行明日方舟并使用 MAA 进行自动刷图。</p>
+<h2 id="所需包的安装">所需包的安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman -S linux-zen docker scrcpy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>linux-zen</code>: 启用了 binderfs 模块供 ReDroid 使用</li>
+<li><code>docker</code>: 用于运行 ReDroid 容器</li>
+<li><code>scrcpy</code>: 显示并控制安卓设备, 它依赖的 android-tools 中的 adb 也是要用到的</li>
+</ul>
+<h2 id="相关配置">相关配置</h2>
+<h3 id="linux-zen">linux-zen</h3>
+<p>由于我使用的 bootloader 是 systemd-boot, 所以只需要在 <code>/boot/loader/entries</code> 中新建一个 <code>arch-zen.conf</code> 并写入以下内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title	Arch Linux-zen
+</span></span><span class="line"><span class="cl">linux	/vmlinuz-linux-zen
+</span></span><span class="line"><span class="cl">initrd  /intel-ucode.img
+</span></span><span class="line"><span class="cl">initrd	/initramfs-linux-zen.img
+</span></span><span class="line"><span class="cl">options	root=UUID=... rw ibt=off nowatchdog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>UUID</code> 的值是根分区的 UUID.</p>
+<p>重启后不断按 <code>↓</code> 键选择 <code>Arch Linux-zen</code> 后启动即可, 想要默认使用此项可以将 <code>/boot/loader/loader.conf</code> 中 <code>default</code> 的值改为 <code>arch-zen.conf</code>.</p>
+<h3 id="docker">docker</h3>
+<p>将当前用户加入 <code>docker</code> 组:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo usermod -aG docker <span class="nv">$USER</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样在使用 <code>docker</code> 命令是就不需要加上 <code>sudo</code>.</p>
+<p>使用 <code>sudo systemctl start docker</code> 启动 docker 服务, 或者使用 <code>sudo systemctl enable --now docker</code> 启动 docker 并设置为开机自启。</p>
+<h2 id="redroid-容器的启动">ReDroid 容器的启动</h2>
+<p>使用以下命令启动 ReDroid 容器:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d --privileged <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -v ~/redroid11:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -p 5555:5555 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --name redroid11 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  redroid/redroid:11.0.0-latest <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  androidboot.redroid_width<span class="o">=</span><span class="m">1280</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  androidboot.redroid_height<span class="o">=</span><span class="m">720</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  androidboot.redroid_gpu_mode<span class="o">=</span>host <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  androidboot.use_memfd<span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一次启动需要下载 ReDroid 镜像, 需要等待一定时间。</p>
+<p>第一次成功启动之后再次启动可以使用 <code>docker start redroid11</code>.</p>
+<p>使用 <code>docker stop redroid11</code> 关闭该容器。</p>
+<h2 id="adb-和-scrcpy-的连接和明日方舟的安装">adb 和 scrcpy 的连接和明日方舟的安装</h2>
+<p>使用 <code>adb connect localhost:5555</code> 连接至 ReDroid 容器。</p>
+<p>使用 <code>scrcpy -s localhost:5555 --no-audio</code> 获取容器的屏幕并进行操控。</p>
+<p>在<a href="https://ak.hypergryph.com/#index" target="_blank" rel="noopener noreffer ">明日方舟的官网</a>下载明日方舟的安卓版安装包之后, 使用 <code>adb -s localhost:5555 install ~/Downloads/arknights-...</code> 安装明日方舟。</p>
+<p>安装完成后在 scrcpy 的窗口中下滑就可以看见, 启动并下载资源后登陆。</p>
+<h2 id="maa-的配置与使用">MAA 的配置与使用</h2>
+<p>在 <a href="https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases" target="_blank" rel="noopener noreffer ">MAA 的 github releases</a> 中下载最新版的 MAA (例如 2024-05-31 最新版是 v5.3.1, 所以下载  MAA-v5.3.1-linux-x86_64.tar.gz 这个文件).</p>
+<p><code>tar -xf</code> 解压后进入 <code>Python</code> 目录, 其中的 <code>smaple.py</code> 是要运行的 python 文件, 将其中的 <code>if asst.connect('adb.exe', '127.0.0.1:5555'):</code> 改成 <code>if asst.connect('adb', '127.0.0.1:5555'):</code>.</p>
+<p>在我的使用中发现直接 <code>python smaple.py</code> 会卡住, 通过调试发现是卡在 <code>asst/updater.py</code> 中 <code>Updater</code> 的 <code>__init__</code> 中获取 MAA 当前版本的地方。</p>
+<p>将 <code>asst/updater.py</code> 中的 <code>self.cur_version = q.get()</code> 改成 <code>self.cur_version = &quot;v5.3.1&quot;</code> 即可, 具体的值用下载到的版本, 并将以下内容注释掉:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="n">queues</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">multiprocessing</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_cur_version</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">q</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>python smaple.py</code> 即可正常启动, 其中的具体配置参见 <a href="https://maa.plus/docs/%E5%8D%8F%E8%AE%AE%E6%96%87%E6%A1%A3/%E9%9B%86%E6%88%90%E6%96%87%E6%A1%A3.html" target="_blank" rel="noopener noreffer ">MAA 集成文档</a>。</p>
+<p>之后便可以开始愉快的挂机了。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://maa.plus/docs/" target="_blank" rel="noopener noreffer ">MAA 用户手册</a>
+<a href="https://lbqaq.top/p/redroid-maa/" target="_blank" rel="noopener noreffer ">ReDroid+MAA：在Linux下游玩明日方舟</a>
+<a href="https://blog.sww.moe/post/redroid-arknights/" target="_blank" rel="noopener noreffer ">使用 redroid 玩耍 Arknights</a></p>
+]]></description>
+</item>
+<item>
     <title>Archlinux 安装记录与常用软件</title>
     <link>https://endless233333.github.io/archlinux-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
     <pubDate>Sat, 18 May 2024 22:37:29 &#43;0800</pubDate>
