@@ -246,6 +246,7 @@ export LANGUAGE=zh_CN:en_US
 - `php`
 - `poke` 交互式二进制文件编辑器
 - `scrcpy` 连安卓手机
+- `sysstat` 性能监控工具
 - `tmux` 终端复用
 - `tree`
 - `wget`
