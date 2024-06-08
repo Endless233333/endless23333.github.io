@@ -261,6 +261,7 @@ export LANGUAGE=zh_CN:en_US
 - `mycli` mysql 客户端
 - `python-selenium` 网页自动化操作
 - `toolong` 查看特别长的文件
+- `wechat-universal-bwrap` 微信
 
 ### docker
 `sudo pacman -S docker`
